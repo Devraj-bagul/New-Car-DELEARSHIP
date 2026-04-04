@@ -5,7 +5,16 @@ const images = Array.from({ length: 12 }, (_, i) => `/car/car img ${i + 1}.jpg`)
 
 const InfoSection = () => {
   return (
-    <section className="py-20 px-4 md:px-8 max-w-7xl mx-auto">
+    <section className="py-20 px-4 md:px-8 max-w-7xl mx-auto relative">
+      <style>
+        {`
+          @keyframes goldenPulse {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+          }
+        `}
+      </style>
+
       <motion.h2 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -35,14 +44,25 @@ const InfoSection = () => {
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: (index % 4) * 0.1 }}
-            className="break-inside-avoid relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all duration-300"
+            className="break-inside-avoid relative group overflow-hidden rounded-2xl shadow-lg transition-all duration-300 transform"
           >
             <img 
               src={src} 
               alt={`AuraDrive Gallery ${index + 1}`} 
-              className="w-full h-auto object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700 ease-out"
+              className="w-full h-auto object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700 ease-out relative z-0"
               loading="lazy"
             />
+            {/* Smooth Random Golden Blink Effect */}
+            <div 
+              className="absolute inset-0 rounded-2xl pointer-events-none z-10 bg-gradient-to-tr from-gold/30 via-transparent to-gold/10 shadow-[inset_0_0_20px_rgba(212,175,55,0.4)] border border-gold/40"
+              style={{
+                /* Pseudo-random durations and delays using the index so each blinks uniquely */
+                animation: `goldenPulse ${3 + (index % 3) * 1.5}s ease-in-out infinite ${index * 0.4}s`
+              }}
+            ></div>
+            
+            {/* Hover enhancement shadow */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 shadow-[inset_0_0_40px_rgba(212,175,55,0.8)] transition-opacity duration-300 pointer-events-none rounded-2xl z-20"></div>
           </motion.div>
         ))}
       </div>

@@ -17,9 +17,6 @@ const LogoWall = () => {
             width: max-content;
             animation: scrollRight 40s linear infinite;
           }
-          .animate-infinite-scroll-right:hover {
-            animation-play-state: paused;
-          }
         `}
       </style>
 

@@ -57,9 +57,6 @@ const OwnershipExperience = () => {
             width: max-content;
             animation: scrollLeft 40s linear infinite;
           }
-          .animate-infinite-scroll:hover {
-            animation-play-state: paused;
-          }
           .animate-testimonials-row1 {
             display: flex;
             width: max-content;

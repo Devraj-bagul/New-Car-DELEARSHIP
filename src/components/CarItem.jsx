@@ -30,10 +30,10 @@ const CarItem = ({ car }) => {
             e.stopPropagation();
             window.open(car?.instagramUrl || "https://www.instagram.com/vinitautodeals_malegaon/?hl=en", "_blank");
           }}
-          className="absolute top-4 right-4 z-30 p-2 bg-white/10 backdrop-blur-md rounded-full text-white hover:scale-110 transition-all duration-300 shadow-lg cursor-pointer border border-white/20 group/insta"
+          className="absolute top-4 right-4 z-30 flex items-center justify-center w-10 h-10 bg-white rounded-full hover:scale-110 transition-transform duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.4)] cursor-pointer group/insta"
           title="Watch on Instagram"
         >
-          <FaInstagram className="text-xl transition-all duration-300 group-hover/insta:text-[#E4405F]" style={{ color: '#E4405F' }} />
+          <FaInstagram className="text-2xl text-[#E4405F] transition-transform duration-300 group-hover/insta:scale-110" />
         </div>
 
         {/* Condition Badge */}

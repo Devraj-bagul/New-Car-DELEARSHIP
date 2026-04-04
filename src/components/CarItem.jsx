@@ -32,7 +32,7 @@ const CarItem = ({ car }) => {
         </div>
 
         {/* Condition Badge */}
-        <h2 className="absolute top-4 left-4 bg-gold text-midnight font-bold px-4 py-1.5 rounded-full text-xs z-20 shadow-[0_0_10px_rgba(212,175,55,0.5)] tracking-widest uppercase">
+        <h2 className="absolute top-4 left-4 bg-white text-black font-extrabold px-5 py-1.5 rounded-full text-[11px] md:text-xs z-20 shadow-[0_4px_15px_rgba(0,0,0,0.2)] tracking-widest uppercase border-2 border-transparent hover:border-gold transition-colors duration-300">
           {car?.condition}
         </h2>
 

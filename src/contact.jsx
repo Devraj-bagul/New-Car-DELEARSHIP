@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { motion } from 'framer-motion';
 import { FiPhoneCall, FiMapPin, FiMail } from 'react-icons/fi';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    mobile: '',
+    location: '',
+    inquiry: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleWhatsAppSubmit = (e) => {
+    e.preventDefault();
+
+    if (!formData.fullName || !formData.mobile) return;
+
+    const message = `Name: ${formData.fullName}\nMobile: ${formData.mobile}\nLocation: ${formData.location || 'Not provided'}\nInquiry: ${formData.inquiry || 'Not provided'}`;
+    
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/919284438720?text=${encodedMessage}`;
+    
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-['Inter',_sans-serif]">
       <Header />
@@ -90,24 +117,29 @@ const Contact = () => {
 
           <h3 className="text-2xl font-bold text-foreground mb-6">Send a Request</h3>
           
-          <form className="flex flex-col gap-5 relative z-10" onSubmit={(e) => e.preventDefault()}>
+          <form className="flex flex-col gap-5 relative z-10" onSubmit={handleWhatsAppSubmit}>
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-muted-foreground uppercase tracking-widest">Full Name</label>
-              <input type="text" placeholder="Your Name" className="p-4 bg-background border border-border rounded-xl focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all text-foreground placeholder:text-muted-foreground/50 font-light" required />
+              <label className="text-sm font-medium text-muted-foreground uppercase tracking-widest">Full Name *</label>
+              <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Your Name" className="p-4 bg-background border border-border rounded-xl focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all text-foreground placeholder:text-muted-foreground/50 font-light" required />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-muted-foreground uppercase tracking-widest">Email Address</label>
-              <input type="email" placeholder="you@example.com" className="p-4 bg-background border border-border rounded-xl focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all text-foreground placeholder:text-muted-foreground/50 font-light" required />
+              <label className="text-sm font-medium text-muted-foreground uppercase tracking-widest">Mobile Number *</label>
+              <input type="tel" name="mobile" value={formData.mobile} onChange={handleChange} placeholder="+91 XXXXX XXXXX" className="p-4 bg-background border border-border rounded-xl focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all text-foreground placeholder:text-muted-foreground/50 font-light" required />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-muted-foreground uppercase tracking-widest">Inquiry Details</label>
-              <textarea placeholder="How can we assist you?" rows="4" className="p-4 bg-background border border-border rounded-xl focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all text-foreground placeholder:text-muted-foreground/50 font-light resize-none" required></textarea>
+              <label className="text-sm font-medium text-muted-foreground uppercase tracking-widest">Location / Address</label>
+              <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="City or Address" className="p-4 bg-background border border-border rounded-xl focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all text-foreground placeholder:text-muted-foreground/50 font-light" />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium text-muted-foreground uppercase tracking-widest">Inquiry Details *</label>
+              <textarea name="inquiry" value={formData.inquiry} onChange={handleChange} placeholder="Which car are you interested in?" rows="4" className="p-4 bg-background border border-border rounded-xl focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all text-foreground placeholder:text-muted-foreground/50 font-light resize-none" required></textarea>
             </div>
 
             <button type="submit" className="mt-4 py-4 bg-gold text-midnight font-bold rounded-xl text-lg uppercase tracking-wider hover:bg-yellow-500 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300">
-              Submit Inquiry
+              Submit Inquiry on WhatsApp
             </button>
           </form>
         </motion.div>

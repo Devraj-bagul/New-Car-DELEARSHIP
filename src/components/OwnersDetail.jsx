@@ -21,7 +21,7 @@ const OwnersDetail = ({ carDetail }) => {
         {/* Profile */}
         <div className="relative">
           <img
-            src="https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zNHczTkVRYlZRVjdoSmJsUVJVU0NSMTdRS3YifQ?width=128"
+            src="https://res.cloudinary.com/dalo5zpik/image/upload/v1774860997/owner_lyqb8n.jpg"
             className="w-[80px] h-[80px] rounded-full object-cover border-2 border-gold/50 p-1"
             alt="Owner"
           />
@@ -31,7 +31,7 @@ const OwnersDetail = ({ carDetail }) => {
         </div>
 
         <div>
-          <h2 className="font-bold text-2xl text-white tracking-wide">Devraj Bagul</h2>
+          <h2 className="font-bold text-2xl text-white tracking-wide">Vinit Bagul</h2>
           <h2 className="text-gray-400 text-sm mt-1 uppercase tracking-wider font-medium">Verified Dealer</h2>
         </div>
       </div>

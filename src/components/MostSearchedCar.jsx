@@ -39,19 +39,19 @@ const MostSearchedCar = () => {
         Most Searched Cars
       </h2>
 
-      <div className="relative px-6 md:px-12">
+      <div className="relative px-2 md:px-12">
         <Carousel
           opts={{
-            align: "start",
+            align: "center",
             loop: true,
           }}
           className="w-full"
         >
-          <CarouselContent className="-ml-4 pb-10">
+          <CarouselContent className="-ml-2 md:-ml-4 pb-10">
             {carList.map((car, index) => (
               <CarouselItem
                 key={index}
-                className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+                className="pl-2 md:pl-4 basis-[90%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
               >
                 <div className="h-full">
                   <CarItem car={car} />

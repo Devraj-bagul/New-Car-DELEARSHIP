@@ -46,99 +46,116 @@ const ListingDetail = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="min-h-screen"
+      className="min-h-screen relative bg-[#Fcfcfc] dark:bg-background overflow-hidden"
     >
-      <Header />
+      {/* Cinematic Grid Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none w-full h-full">
+        {/* The Grid lines */}
+        <div 
+          className="absolute inset-0 opacity-[0.6] dark:opacity-[0.1]" 
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+              linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px',
+            backgroundPosition: 'center top'
+          }}
+        ></div>
+        
+        {/* Gradient Fade Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#Fcfcfc]/50 to-[#Fcfcfc] dark:via-background/80 dark:to-background pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-[400px] bg-gradient-to-b from-white/80 via-white/20 to-transparent dark:from-black/40 pointer-events-none"></div>
+      </div>
 
-      {/* MAIN CONTENT */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        className="p-5 md:p-10 md:px-20 pt-28 md:pt-36"
-      >
+      <div className="relative z-10">
+        <Header />
+
+        {/* MAIN CONTENT */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="p-5 md:p-10 md:px-20 pt-28 md:pt-36"
         >
-          <DetailHeader carDetail={carDetail} />
-        </motion.div>
-
-        {/* MOBILE */}
-        <div className="block md:hidden space-y-6 mt-6">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <ImageGallery carDetail={carDetail} />
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <DetailHeader carDetail={carDetail} />
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <Pricing carDetail={carDetail} />
-          </motion.div>
-
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <Description carDetail={carDetail} />
-          </motion.div>
-
-
-
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <Features features={carDetail?.features} />
-          </motion.div>
-
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <Specification carDetail={carDetail} />
-          </motion.div>
-
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <OwnersDetail carDetail={carDetail} />
-          </motion.div>
-
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <FinancialCalculator carDetail={carDetail} />
-          </motion.div>
-        </div>
-
-        {/* DESKTOP */}
-        <div className="hidden md:grid grid-cols-3 w-full mt-10 gap-5">
-          <div className="col-span-2 space-y-5">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          {/* MOBILE */}
+          <div className="block md:hidden space-y-6 mt-6">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <ImageGallery carDetail={carDetail} />
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <Pricing carDetail={carDetail} />
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <Description carDetail={carDetail} />
             </motion.div>
 
-
-
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <Features features={carDetail?.features} />
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <Specification carDetail={carDetail} />
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <OwnersDetail carDetail={carDetail} />
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <FinancialCalculator carDetail={carDetail} />
             </motion.div>
           </div>
 
-          <div className="space-y-5">
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
-              <Pricing carDetail={carDetail} />
-            </motion.div>
+          {/* DESKTOP */}
+          <div className="hidden md:grid grid-cols-3 w-full mt-10 gap-5">
+            <div className="col-span-2 space-y-5">
+              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+                <ImageGallery carDetail={carDetail} />
+              </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
-              <Specification carDetail={carDetail} />
-            </motion.div>
+              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+                <Description carDetail={carDetail} />
+              </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
-              <OwnersDetail carDetail={carDetail} />
-            </motion.div>
+              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+                <Features features={carDetail?.features} />
+              </motion.div>
+
+              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+                <FinancialCalculator carDetail={carDetail} />
+              </motion.div>
+            </div>
+
+            <div className="space-y-5">
+              <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
+                <Pricing carDetail={carDetail} />
+              </motion.div>
+
+              <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
+                <Specification carDetail={carDetail} />
+              </motion.div>
+
+              <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
+                <OwnersDetail carDetail={carDetail} />
+              </motion.div>
+            </div>
           </div>
-        </div>
+        </motion.div>
 
-      </motion.div>
-
-      <MostSearchedCar />
-      <Footer />
+        <MostSearchedCar />
+        <Footer />
+      </div>
     </motion.div>
   );
 };

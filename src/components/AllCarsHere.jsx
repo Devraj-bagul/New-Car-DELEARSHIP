@@ -58,7 +58,7 @@ const ALLCarsHere = () => {
 
   return (
     <div className="">
-      <div className="p-10 md:px-20 bg-background transition-colors duration-300">
+      <div className="p-10 md:px-20 bg-transparent transition-colors duration-300">
         <h2 className="font-bold text-4xl text-gray-900 dark:text-white transition-colors duration-300">All Cars Listing</h2>
 
         {/* ⭐ Animated Car Grid */}

@@ -46,7 +46,7 @@ const HappyCustomers = () => {
   }, [activeVideo]);
 
   return (
-    <section className="w-full py-20 bg-background transition-colors duration-500 overflow-hidden relative">
+    <section className="w-full py-20 bg-transparent transition-colors duration-500 overflow-hidden relative">
       <style>
         {`
           @keyframes scrollReels {

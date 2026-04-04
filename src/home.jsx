@@ -15,28 +15,39 @@ import HappyCustomers from './components/HappyCustomers'
 
 const Home = () => {
   return (
-    <div>
-      {/* <SignInButton mode='modal' forceRedirectUrl='/'>
-        <Button>Sign In</Button>
-      </SignInButton> */}
-      {/* header */}
-      <Header/>
-      {/* hero */}
-      <Hero/>
-      {/* Category */}
-      <Category/>
-      {/* New comp create  */}
-      <ALLCarsHere/>
-      {/* InfoSection */}
-      <InfoSection/>
-      {/* New Luxury Components */}
-      <LogoWall />
-      <OwnershipExperience />
-      <ExecutiveGallery />
-      {/* Happy Customers Reels */}
-      <HappyCustomers />
-      {/* Footer */}
-      <Footer/>
+    <div className="min-h-screen relative bg-[#Fcfcfc] dark:bg-background overflow-hidden">
+      {/* Cinematic Grid Background (Fixed to span the entire scrolling page) */}
+      <div className="fixed inset-0 z-0 pointer-events-none w-full h-full">
+        {/* The Grid lines */}
+        <div 
+          className="absolute inset-0 opacity-[0.6] dark:opacity-[0.1]" 
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+              linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px',
+            backgroundPosition: 'center top'
+          }}
+        ></div>
+        
+        {/* Gradient Fade Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#Fcfcfc]/50 to-[#Fcfcfc] dark:via-background/80 dark:to-background pointer-events-none"></div>
+      </div>
+      
+      {/* Main Content wrapper brought to front */}
+      <div className="relative z-10">
+        <Header/>
+        <Hero/>
+        <Category/>
+        <ALLCarsHere/>
+        <InfoSection/>
+        <LogoWall />
+        <OwnershipExperience />
+        <ExecutiveGallery />
+        <HappyCustomers />
+        <Footer/>
+      </div>
     </div>
   )
 }

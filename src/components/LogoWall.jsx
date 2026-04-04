@@ -5,7 +5,7 @@ const logos = Array.from({ length: 15 }, (_, i) => `/logo/logo${i + 1}.jpg`);
 
 const LogoWall = () => {
   return (
-    <div className="w-full py-24 bg-midnight border-y border-gold/10 relative overflow-hidden">
+    <div className="w-full py-24 bg-transparent border-y border-gold/10 relative overflow-hidden">
       <style>
         {`
           @keyframes scrollRight {
@@ -21,7 +21,7 @@ const LogoWall = () => {
       </style>
 
       {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-32 bg-gold/5 blur-[100px] pointer-events-none rounded-[100%] z-0"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-32 bg-gold/10 blur-[100px] pointer-events-none rounded-[100%] z-0"></div>
       
       <div className="max-w-7xl mx-auto px-5 relative z-10 flex flex-col items-center">
         
@@ -32,7 +32,7 @@ const LogoWall = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-light text-white tracking-wide mb-4">
+          <h2 className="text-3xl md:text-5xl font-light text-foreground tracking-wide mb-4 transition-colors duration-300">
             <span className="text-gold font-serif italic">We offer a wide range of cars from trusted brands available with us.</span>
           </h2>
           <p className="text-gold uppercase tracking-[0.2em] font-semibold text-xs md:text-sm">
@@ -45,8 +45,8 @@ const LogoWall = () => {
       <div className="w-full overflow-hidden pb-8 mx-auto relative z-10 mt-4">
         
         {/* Fading Edges */}
-        <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-midnight to-transparent z-20 pointer-events-none"></div>
-        <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-midnight to-transparent z-20 pointer-events-none"></div>
+        <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-[#Fcfcfc] dark:from-background to-transparent z-20 pointer-events-none transition-colors duration-300"></div>
+        <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-[#Fcfcfc] dark:from-background to-transparent z-20 pointer-events-none transition-colors duration-300"></div>
 
         <div className="animate-infinite-scroll-right gap-6 sm:gap-8 md:gap-10 lg:gap-12 px-4">
           {[...logos, ...logos].map((src, index) => (

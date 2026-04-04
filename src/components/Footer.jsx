@@ -6,51 +6,65 @@ import { FaHatCowboy } from "react-icons/fa";
 const Footer = () => {
   return (
     <div>
-      <footer className="bg-midnight border-t border-gold/20">
-        <div className="mx-auto max-w-7xl px-4 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-24">
+      <footer className="bg-transparent border-t border-gold/20 relative">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gold/5 blur-[100px] pointer-events-none rounded-[100%] z-0"></div>
+        <div className="mx-auto max-w-7xl px-4 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-24 relative z-10">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold tracking-widest uppercase bg-gradient-to-r from-gold via-yellow-200 to-gold bg-clip-text text-transparent sm:text-4xl">
+            {/* Massive Heading */}
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wide uppercase bg-gradient-to-r from-gold via-yellow-500 to-yellow-600 bg-clip-text text-transparent drop-shadow-md font-['Playfair_Display']">
               Vinit Auto Consultants
             </h2>
 
-            <p className="mx-auto mt-4 max-w-md text-gray-400 font-light">
+            {/* Bolder Tagline */}
+            <p className="mx-auto mt-6 max-w-2xl text-foreground font-medium text-lg md:text-xl leading-relaxed">
               Delivering trusted, premium pre-owned cars across India — perfectly matched to your lifestyle and budget.
             </p>
 
-            <p className="mx-auto mt-6 max-w-lg text-gray-400 font-light bg-neutral-900 border border-gold/10 p-4 rounded-xl shadow-lg">
-              <span className="font-medium text-gold block mb-2">
-                The VINIT CARS Boutique
-              </span>
-              Near D-Mart, Malegoan, Nashik
-              <br/>
-              <span className="font-semibold text-white mt-2 block">
-                CONTACT NO: 9284438720
-              </span>
-            </p>
+            {/* Elegant Divider */}
+            <div className="w-24 h-1 bg-gold/50 mx-auto my-10 rounded-full"></div>
 
-            <a
-              href="https://wa.me/919284438720"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-block rounded-full border border-gold px-12 py-3 text-sm font-medium text-gold hover:bg-gold hover:text-midnight hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300"
-            >
-              Contact Us
-            </a>
+            {/* Professional Info Grid */}
+            <div className="mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-stretch pt-2">
+              {/* Card 1: Location */}
+              <div className="bg-card border border-border/80 p-8 rounded-3xl shadow-[0_4px_25px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_25px_rgba(0,0,0,0.2)] hover:border-gold/50 transition-all duration-300 flex flex-col justify-center">
+                <span className="font-extrabold text-gold block mb-3 text-lg md:text-xl tracking-widest uppercase">
+                  Vinit Cars Boutique
+                </span>
+                <p className="text-muted-foreground font-medium text-sm md:text-base leading-relaxed">
+                  Near D-Mart, Malegoan,<br/>Nashik, Maharashtra
+                </p>
+              </div>
+
+              {/* Card 2: Contact Action */}
+              <div className="bg-card border border-border/80 p-8 rounded-3xl shadow-[0_4px_25px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_25px_rgba(0,0,0,0.2)] hover:border-gold/50 transition-all duration-300 flex flex-col justify-center items-center">
+                <span className="font-bold text-foreground mb-4 text-xl tracking-wider">
+                  📞 9284438720
+                </span>
+                <a
+                  href="https://wa.me/919284438720"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-gold px-10 py-3.5 text-sm md:text-base font-extrabold text-midnight hover:bg-yellow-400 hover:scale-[1.03] shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all duration-300 uppercase tracking-widest"
+                >
+                  Contact Us Now
+                </a>
+              </div>
+            </div>
           </div>
 
-          <div className="mt-16 border-t border-gold/10 pt-8 sm:flex sm:items-center sm:justify-between lg:mt-24">
+          <div className="mt-16 border-t border-border/50 pt-8 sm:flex sm:items-center sm:justify-between lg:mt-24">
             <div className="flex flex-col items-center sm:items-start gap-2 mb-6 sm:mb-0">
-              <span className="text-gold/60 text-xs tracking-widest uppercase">Member of Vinit Auto Group</span>
-              <ul className="flex flex-wrap justify-center sm:justify-start gap-6 text-xs text-gray-500">
+              <span className="text-gold px-2 text-xs tracking-widest uppercase font-semibold">Member of Vinit Auto Group</span>
+              <ul className="flex flex-wrap justify-center sm:justify-start gap-6 text-xs text-muted-foreground">
                 <li>
-                  <a href="#" className="hover:text-gold transition">
+                  <a href="#" className="hover:text-gold transition-colors duration-300">
                     {" "}
                     Terms &amp; Conditions{" "}
                   </a>
                 </li>
 
                 <li>
-                  <a href="#" className="hover:text-gold transition">
+                  <a href="#" className="hover:text-gold transition-colors duration-300">
                     {" "}
                     Privacy Policy{" "}
                   </a>
@@ -64,7 +78,7 @@ const Footer = () => {
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-500 hover:text-gold transition"
+                  className="text-muted-foreground hover:text-gold transition-colors duration-300"
                 >
                   <span className="sr-only">Facebook</span>
 
@@ -79,7 +93,7 @@ const Footer = () => {
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-500 hover:text-gold transition"
+                  className="text-muted-foreground hover:text-gold transition-colors duration-300"
                 >
                   <span className="sr-only">Instagram</span>
 
@@ -94,7 +108,7 @@ const Footer = () => {
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-500 hover:text-gold transition"
+                  className="text-muted-foreground hover:text-gold transition-colors duration-300"
                 >
                   <span className="sr-only">Twitter</span>
 
@@ -106,7 +120,7 @@ const Footer = () => {
 
               <li>
                 <SignInButton mode="modal" forceRedirectUrl="/" asChild>
-                  <span className="cursor-pointer text-gray-500 hover:text-gold transition">
+                  <span className="cursor-pointer text-muted-foreground hover:text-gold transition-colors duration-300">
                     Admin Access
                   </span>
                 </SignInButton>

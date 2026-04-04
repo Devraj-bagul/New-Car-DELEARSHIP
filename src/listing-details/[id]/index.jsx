@@ -79,6 +79,8 @@ const ListingDetail = () => {
             <Description carDetail={carDetail} />
           </motion.div>
 
+
+
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <Features features={carDetail?.features} />
           </motion.div>
@@ -106,6 +108,8 @@ const ListingDetail = () => {
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <Description carDetail={carDetail} />
             </motion.div>
+
+
 
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <Features features={carDetail?.features} />

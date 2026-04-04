@@ -35,7 +35,7 @@ const Hero = () => {
            transition={{ duration: 0.6, delay: 0.2 }}
            className="px-4 py-1 border border-gold/30 rounded-full bg-midnight/50 backdrop-blur-sm"
         >
-          <span className="text-gold uppercase tracking-widest text-xs font-semibold shadow-gold">The Elite Collection</span>
+          <span className="text-gold uppercase tracking-widest text-xs font-semibold shadow-gold">VINIT CARS Collection</span>
         </motion.div>
 
         {/* HEADING */}
@@ -53,9 +53,9 @@ const Hero = () => {
             drop-shadow-2xl
           "
         >
-          The Pinnacle of Motion: <br className="hidden sm:block" /> 
+          The Pride of Indian Roads: <br className="hidden sm:block" /> 
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-gold to-yellow-600 drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]">
-            NextGen Luxury Automotive
+             Vinit Cars – Premium Pre-Owned Excellence
           </span>
         </motion.h2>
 
@@ -65,7 +65,7 @@ const Hero = () => {
            transition={{ duration: 0.6, delay: 0.6 }}
            className="text-gray-200 text-lg sm:text-xl max-w-2xl text-center font-light tracking-wide mb-2 shadow-black drop-shadow-lg"
         >
-          Curated premium vehicles for the uncompromising individual.
+         Handpicked premium cars for those who value trust, performance, and reliability.
         </motion.p>
 
         {/* SEARCH BOX */}

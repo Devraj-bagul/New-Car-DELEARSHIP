@@ -82,8 +82,23 @@ const AddListing = () => {
       ...prevData,
       [name]: value,
     }));
+  };
 
-    console.log(featuresData);
+  const handleSelectAllFeatures = () => {
+    // Check if all are currently selected
+    const allSelected = features.features.every(item => featuresData?.[item.name]);
+    
+    if (allSelected) {
+      // Unselect all
+      setFeaturesData({});
+    } else {
+      // Select all
+      const allSelectedData = {};
+      features.features.forEach(item => {
+        allSelectedData[item.name] = true;
+      });
+      setFeaturesData(allSelectedData);
+    }
   };
 
   const onSubmit = async (e) => {
@@ -189,7 +204,18 @@ const AddListing = () => {
           <Separator className="my-6" />
           {/* feature List  */}
           <div>
-            <h2 className="font-medium text-xl my-6">Features</h2>
+            <div className="flex justify-between items-center my-6">
+              <h2 className="font-medium text-xl">Features</h2>
+              <Button 
+                type="button" 
+                variant="outline" 
+                size="sm" 
+                onClick={handleSelectAllFeatures}
+                className="text-gold border-gold/50 hover:bg-gold/10"
+              >
+                {features.features.every(item => featuresData?.[item.name]) ? "Unselect All" : "Select All Features"}
+              </Button>
+            </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
               {features.features.map((item, index) => (
                 <div key={index} className="flex gap-2 items-center">

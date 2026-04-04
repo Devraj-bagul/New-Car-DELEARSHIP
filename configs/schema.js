@@ -28,6 +28,7 @@ export const CarListing = pgTable("carListing", {
   userImageUrl:varchar('userImageUrl').default('https://api.clerk.com/v1/user/images/default.png'),
   postedOn:varchar('postedOn'),
   instagramUrl:varchar('instagramUrl').default('https://www.instagram.com/vinitautodeals_malegaon/?hl=en'),
+  aiInsights:json('aiInsights'),
 })
 
 export const CarImages=pgTable('carImages', {

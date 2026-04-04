@@ -136,9 +136,9 @@ const Header = () => {
                 className="flex items-center gap-2 text-gold group transition-all"
                 title="Admin Login"
               >
-                <div className="p-2.5 rounded-full border border-gold/40 bg-gold/10 group-hover:bg-gold/30 group-hover:shadow-[0_0_20px_rgba(212,175,55,0.6)] transition duration-300">
+                {/* <div className="p-2.5 rounded-full border border-gold/40 bg-gold/10 group-hover:bg-gold/30 group-hover:shadow-[0_0_20px_rgba(212,175,55,0.6)] transition duration-300">
                   <MdFingerprint className="text-2xl" />
-                </div>
+                </div> */}
               </button>
             </div>
           )}
@@ -196,9 +196,9 @@ const Header = () => {
               </li>
             </a>
 
-            <button className="flex justify-center items-center gap-3 mt-4 text-gold/80 hover:text-gold transition w-full py-2 border border-gold/20 rounded-md">
+            {/* <button className="flex justify-center items-center gap-3 mt-4 text-gold/80 hover:text-gold transition w-full py-2 border border-gold/20 rounded-md">
                <MdFingerprint className="text-xl" /> Admin Login
-            </button>
+            </button> */}
           </ul>
         </div>
       )}

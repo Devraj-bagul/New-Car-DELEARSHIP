@@ -14,8 +14,7 @@ const Footer = () => {
             </h2>
 
             <p className="mx-auto mt-4 max-w-md text-gray-400 font-light">
-              Curating automotive excellence. We provide the perfect premium pre-owned 
-              vehicles tailored to your exact desires and lifestyle.
+              Delivering trusted, premium pre-owned cars across India — perfectly matched to your lifestyle and budget.
             </p>
 
             <p className="mx-auto mt-6 max-w-lg text-gray-400 font-light bg-neutral-900 border border-gold/10 p-4 rounded-xl shadow-lg">
@@ -25,7 +24,7 @@ const Footer = () => {
               Near D-Mart, Malegoan, Nashik
               <br/>
               <span className="font-semibold text-white mt-2 block">
-                VIP Concierge: (9284438720)
+                CONTACT NO: 9284438720
               </span>
             </p>
 
@@ -35,13 +34,13 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="mt-8 inline-block rounded-full border border-gold px-12 py-3 text-sm font-medium text-gold hover:bg-gold hover:text-midnight hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300"
             >
-              Contact Concierge
+              Contact Us
             </a>
           </div>
 
           <div className="mt-16 border-t border-gold/10 pt-8 sm:flex sm:items-center sm:justify-between lg:mt-24">
             <div className="flex flex-col items-center sm:items-start gap-2 mb-6 sm:mb-0">
-              <span className="text-gold/60 text-xs tracking-widest uppercase">Member of Elite Auto Group</span>
+              <span className="text-gold/60 text-xs tracking-widest uppercase">Member of Vinit Auto Group</span>
               <ul className="flex flex-wrap justify-center sm:justify-start gap-6 text-xs text-gray-500">
                 <li>
                   <a href="#" className="hover:text-gold transition">

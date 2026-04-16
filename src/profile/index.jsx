@@ -9,7 +9,7 @@ const Profile = () => {
   return (
     <div>
       <Header />
-      <div className="px-10 md:px-20 my-10">
+      <div className="px-10 md:px-20 my-10 pt-20 pb-32 md:pb-0">
         <Tabs defaultValue="my-listing" className="w-full">
 
           <TabsList className="w-full flex justify-start">

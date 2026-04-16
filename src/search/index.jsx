@@ -7,8 +7,10 @@ import { useSearchParams, Link } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import Header from "@/components/Header";
 import CarItem from "@/components/CarItem";
+import { useAppContext } from "@/Shared/AppContext";
 
 const SearchByOption = () => {
+  const { isTwoColumnGrid, showWishlistOnly, wishlist } = useAppContext();
   const [searchParam] = useSearchParams();
   const [carList, setCarList] = useState([]);
 
@@ -62,20 +64,25 @@ const SearchByOption = () => {
     setLoading(false);
   };
 
+  const displayedCars = showWishlistOnly 
+    ? carList.filter(car => wishlist.includes(car.id))
+    : carList;
+
   return (
-    <div>
+    <div className="pb-32 sm:pb-10 min-h-screen">
       <Header />
 
-      <div className="p-10 md:px-20 pt-28 md:pt-32">
-
-
-
-        <h2 className="font-bold text-4xl text-gray-900 dark:text-white transition-colors duration-300">
-          {query ? `Search Results for: "${query}"` : "All Cars Listing"}
+      <div className="p-5 md:p-10 md:px-20 pt-40 md:pt-32">
+        <h2 className="font-bold text-2xl md:text-4xl text-gray-900 dark:text-white transition-colors duration-300">
+          {showWishlistOnly ? "My Wishlist" : (query ? `Search Results for: "${query}"` : "All Cars Listing")}
         </h2>
 
         {/* Car List */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-7">
+        <div className={`grid mt-7 gap-4 md:gap-6 ${
+          isTwoColumnGrid 
+            ? "grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" 
+            : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        }`}>
           {loading ? (
             [1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
               <div
@@ -83,8 +90,8 @@ const SearchByOption = () => {
                 className="h-[320px] rounded-xl bg-slate-200 dark:bg-slate-800 animate-pulse"
               ></div>
             ))
-          ) : carList?.length > 0 ? (
-            carList.map((item, index) => (
+          ) : displayedCars?.length > 0 ? (
+            displayedCars.map((item, index) => (
               <div key={index} className="h-full">
                 <CarItem car={item} />
               </div>

@@ -33,7 +33,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col font-['Inter',_sans-serif]">
+    <div className="min-h-screen bg-background text-foreground flex flex-col font-['Inter',_sans-serif] pb-32 md:pb-0">
       <Header />
       
       {/* Hero Section for Contact */}

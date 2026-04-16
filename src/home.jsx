@@ -15,7 +15,7 @@ import HappyCustomers from './components/HappyCustomers'
 
 const Home = () => {
   return (
-    <div className="min-h-screen relative bg-[#Fcfcfc] dark:bg-background overflow-hidden">
+    <div className="min-h-screen relative bg-[#Fcfcfc] dark:bg-background overflow-hidden pb-32 md:pb-0">
       {/* Cinematic Grid Background (Fixed to span the entire scrolling page) */}
       <div className="fixed inset-0 z-0 pointer-events-none w-full h-full">
         {/* The Grid lines */}

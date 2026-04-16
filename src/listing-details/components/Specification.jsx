@@ -14,21 +14,26 @@ const Specification = ({carDetail}) => {
       </p>
 
       {carDetail ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 xl:grid-cols-2 gap-3 md:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 md:gap-5">
           {CarSpecification.map((item, index) => (
             <div 
               key={index} 
-              className="group flex flex-col p-4 bg-secondary/50 border border-border/60 rounded-xl hover:bg-gold/5 hover:border-gold shadow-sm hover:shadow-[0_5px_15px_rgba(212,175,55,0.15)] transition-all duration-300"
+              className="flex items-center gap-4 p-5 bg-secondary/30 border border-border/40 rounded-3xl hover:bg-gold/5 hover:border-gold/50 transition-all duration-300 shadow-sm"
             >
-              <div className="p-2 mb-2 w-max rounded-lg bg-background shadow-inner text-muted-foreground group-hover:text-gold transition-colors duration-300">
+              {/* Icon Container */}
+              <div className="flex-shrink-0 p-3 rounded-2xl bg-white dark:bg-card shadow-sm border border-border/30 text-gold scale-110">
                 <IconField icon={item?.icon} />
               </div>
-              <span className="text-[10px] md:text-xs uppercase tracking-wider font-bold text-muted-foreground mb-1 break-words">
-                {item.label}
-              </span>
-              <span className="font-extrabold text-foreground text-sm sm:text-base capitalize break-words leading-tight">
-                {carDetail?.[item?.name] || "-"}
-              </span>
+              
+              {/* Text Content */}
+              <div className="flex flex-col min-w-0">
+                <span className="text-[10px] md:text-sm uppercase tracking-[0.2em] font-black text-muted-foreground/50 leading-none mb-1.5 truncate">
+                  {item.label}
+                </span>
+                <span className="font-extrabold text-foreground text-sm md:text-lg capitalize leading-tight break-words">
+                  {carDetail?.[item?.name] || "-"}
+                </span>
+              </div>
             </div>
           ))}
         </div>

@@ -7,25 +7,27 @@ const Features = ({ features }) => {
     typeof features === "object" && features !== null ? features : {};
 
   return (
-    <div className="p-8 md:p-10 border border-border/50 bg-card shadow-[0_4px_25px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_25px_rgba(0,0,0,0.2)] rounded-3xl my-7 transition-all">
-      <h2 className="font-bold text-3xl md:text-4xl text-foreground mb-2 tracking-wide font-['Playfair_Display']">
-        Premium <span className="text-gold italic font-serif">Features</span>
+    <div className="p-8 md:p-12 border border-border/60 bg-secondary/10 dark:bg-card shadow-2xl rounded-[2.5rem] my-10 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+      
+      <h2 className="font-black text-3xl md:text-5xl text-foreground mb-1 tracking-tighter uppercase">
+        Premium <span className="text-gold italic font-serif lowercase">Features</span>
       </h2>
-      <p className="text-muted-foreground text-sm tracking-widest uppercase mb-8">
-        Equipped for excellence
+      <p className="text-muted-foreground text-[10px] md:text-sm tracking-[0.3em] font-black uppercase mb-10 opacity-70 flex items-center gap-3">
+        Equipped for excellence <span className="h-[2px] w-12 bg-gold/30"></span>
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
         {Object.entries(featureList).map(([key, value]) =>
           value ? (
             <div 
               key={key} 
-              className="group flex gap-4 items-center p-4 bg-secondary/50 border border-border/60 rounded-2xl hover:bg-gold/5 hover:border-gold shadow-sm hover:shadow-[0_5px_15px_rgba(212,175,55,0.15)] transition-all duration-300"
+              className="group flex gap-3 items-center p-3 md:p-6 bg-white dark:bg-black/20 border border-border/40 rounded-2xl hover:bg-gold/5 hover:border-gold/50 shadow-sm transition-all duration-300"
             >
-              <div className="p-2 rounded-full bg-gold/10 group-hover:bg-gold transition-colors duration-300 shadow-inner">
-                <FaCheck className="text-gold group-hover:text-midnight text-sm" />
+              <div className="flex-shrink-0 p-1.5 md:p-2.5 rounded-xl bg-gold/10 group-hover:bg-gold transition-all duration-500 shadow-inner group-hover:scale-110">
+                <FaCheck className="text-gold group-hover:text-midnight text-[10px] md:text-base" />
               </div>
-              <h2 className="capitalize font-bold text-foreground tracking-wide group-hover:text-gold transition-colors duration-300">
+              <h2 className="capitalize font-black text-foreground text-[11px] md:text-lg tracking-tight group-hover:text-gold transition-colors duration-300 line-clamp-1">
                 {key.replace(/([A-Z])/g, " $1")}
               </h2>
             </div>

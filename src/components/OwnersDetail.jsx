@@ -11,10 +11,10 @@ const OwnersDetail = ({ carDetail }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="p-8 border border-white/10 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.5)] mt-7 bg-[#111111] dark:bg-[#111111]"
+      className="p-8 border border-white/10 rounded-[2.5rem] shadow-2xl mt-7 bg-[#111111] dark:bg-card relative overflow-hidden"
     >
       <div className="flex items-center gap-2 mb-6 border-b border-white/5 pb-4">
-        <h2 className="font-semibold tracking-wide text-xl text-gold uppercase">Seller Details</h2>
+        <h2 className="font-black tracking-tighter text-2xl text-gold uppercase">Owner <span className="text-white italic font-serif lowercase">Details</span></h2>
       </div>
 
       <div className="flex items-center gap-5">
@@ -22,44 +22,46 @@ const OwnersDetail = ({ carDetail }) => {
         <div className="relative">
           <img
             src="https://res.cloudinary.com/dalo5zpik/image/upload/v1774860997/owner_lyqb8n.jpg"
-            className="w-[80px] h-[80px] rounded-full object-cover border-2 border-gold/50 p-1"
+            className="w-[85px] h-[85px] rounded-full object-cover border-2 border-gold/50 p-1 bg-black/50 shadow-xl"
             alt="Owner"
           />
-          <div className="absolute bottom-0 right-0 bg-white rounded-full p-0.5">
+          <div className="absolute -bottom-1 -right-1 bg-white rounded-full p-1 shadow-lg">
             <MdVerifiedUser className="text-blue-500 text-xl" />
           </div>
         </div>
 
-        <div>
-          <h2 className="font-bold text-2xl text-white tracking-wide">Vinit Bagul</h2>
-          <h2 className="text-gray-400 text-sm mt-1 uppercase tracking-wider font-medium">Verified Dealer</h2>
+        <div className="flex flex-col">
+          <span className="text-gold text-[10px] uppercase font-black tracking-[0.2em] mb-1">Expert Dealer</span>
+          <h2 className="font-black text-2xl text-white tracking-tight leading-none mb-1">Vinit Bagul</h2>
+          <div className="flex items-center gap-1.5 px-3 py-1 bg-gold/10 border border-gold/20 rounded-full w-fit">
+             <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+             <span className="text-gold text-[10px] uppercase tracking-wider font-black">Verified Dealer</span>
+          </div>
         </div>
       </div>
 
-      <div className="mt-8 space-y-4">
+      <div className="mt-10 flex flex-col gap-4">
         {/* 📞 Call Button */}
         <Button
-          className="w-full bg-transparent border border-gold/40 hover:bg-gold/10 hover:border-gold text-white font-medium flex items-center justify-center gap-3 py-6 rounded-xl transition-all duration-300 group"
+          className="w-full bg-white dark:bg-gold text-black hover:bg-gold/90 font-black uppercase tracking-tighter flex items-center justify-center gap-3 py-7 rounded-2xl transition-all duration-300 shadow-lg shadow-gold/20"
           onClick={() => (window.location.href = "tel:+919284438720")}
         >
-          <div className="bg-gold/20 p-2 rounded-full group-hover:bg-gold transition-colors">
-            <FaPhoneAlt className="text-gold group-hover:text-black text-sm" />
-          </div>
+          <FaPhoneAlt className="text-lg" />
           Call Dealer
         </Button>
 
         {/* 💬 WhatsApp Button */}
         <Button
-          className="w-full bg-[#25D366]/10 border border-[#25D366]/30 hover:bg-[#25D366] hover:border-[#25D366] text-[#25D366] hover:text-white font-medium flex items-center justify-center gap-3 py-6 rounded-xl transition-all duration-300 group"
+          className="w-full bg-[#25D366] text-white hover:bg-[#20ba59] font-black uppercase tracking-tighter flex items-center justify-center gap-3 py-7 rounded-2xl transition-all duration-300 shadow-lg shadow-green-500/20"
           onClick={() => window.open("https://wa.me/919284438720", "_blank")}
         >
-          <FaWhatsapp className="text-xl" />
+          <FaWhatsapp className="text-2xl" />
           WhatsApp Now
         </Button>
 
         {/* ⬅️ Back Button */}
         <Button
-          className="w-full bg-white/5 border border-white/10 hover:bg-white/10 text-white font-medium flex items-center justify-center gap-3 py-6 rounded-xl transition-all duration-300"
+          className="w-full bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-3 py-6 rounded-2xl transition-all duration-300"
           onClick={() => window.history.back()}
         >
           Go Back

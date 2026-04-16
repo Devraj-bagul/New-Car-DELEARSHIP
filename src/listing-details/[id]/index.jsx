@@ -68,7 +68,7 @@ const ListingDetail = () => {
         <div className="absolute top-0 left-0 right-0 h-[400px] bg-gradient-to-b from-white/80 via-white/20 to-transparent dark:from-black/40 pointer-events-none"></div>
       </div>
 
-      <div className="relative z-10">
+      <div className="relative z-10 pb-32 md:pb-0">
         <Header />
 
         {/* MAIN CONTENT */}
@@ -101,11 +101,11 @@ const ListingDetail = () => {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <Features features={carDetail?.features} />
+              <Specification carDetail={carDetail} />
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <Specification carDetail={carDetail} />
+              <Features features={carDetail?.features} />
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>

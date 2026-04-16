@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const GlobalShowroom = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-midnight text-white">
+    <div className="min-h-screen flex flex-col bg-midnight text-white pb-32 md:pb-0">
       <Header />
       
       <main className="flex-grow flex flex-col items-center justify-center pt-32 pb-20 px-4 text-center">

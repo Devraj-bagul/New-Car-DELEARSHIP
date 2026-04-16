@@ -6,8 +6,10 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";   // ⭐ ANIMATION IMPORT
 import CarItem from "@/components/CarItem";
+import { useAppContext } from "../Shared/AppContext";
 
 const ALLCarsHere = () => {
+  const { isTwoColumnGrid, showWishlistOnly, wishlist } = useAppContext();
   const [searchParam] = useSearchParams();
   const [carList, setCarList] = useState([]);
 
@@ -56,15 +58,25 @@ const ALLCarsHere = () => {
     setCarList(resp);
   };
 
+  const displayedCars = showWishlistOnly 
+    ? carList.filter(car => wishlist.includes(car.id))
+    : carList;
+
   return (
-    <div className="">
-      <div className="p-10 md:px-20 bg-transparent transition-colors duration-300">
-        <h2 className="font-bold text-4xl text-gray-900 dark:text-white transition-colors duration-300">All Cars Listing</h2>
+    <div className="pb-24 sm:pb-10">
+      <div className="p-5 md:p-10 md:px-20 bg-transparent transition-colors duration-300">
+        <h2 className="font-bold text-2xl md:text-4xl text-gray-900 dark:text-white transition-colors duration-300">
+          {showWishlistOnly ? "My Wishlist" : "All Cars Listing"}
+        </h2>
 
         {/* ⭐ Animated Car Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-7">
-          {carList?.length > 0 ? (
-            carList.map((item, index) => (
+        <div className={`grid mt-7 gap-4 md:gap-6 ${
+          isTwoColumnGrid 
+            ? "grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" 
+            : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        }`}>
+          {displayedCars?.length > 0 ? (
+            displayedCars.map((item, index) => (
               <motion.div
                 key={index}
                 className="h-full"

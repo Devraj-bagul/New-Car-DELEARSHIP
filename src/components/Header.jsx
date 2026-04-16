@@ -5,6 +5,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
 import { MdFingerprint } from "react-icons/md";
 import ThemeToggle from "./ThemeToggle";
+import MobileNavbar from "./MobileNavbar";
 
 const Header = () => {
   const { isSignedIn } = useUser();
@@ -45,12 +46,18 @@ const Header = () => {
   return (
     <>
       {/* GLOBAL BACK BUTTON - MINIMAL ICON */}
-      {location.pathname !== "/" && (
+      {location.pathname !== "/" && !location.pathname.startsWith("/listing-details") && (
         <button
-          onClick={() => navigate(-1)}
-          className="fixed top-28 sm:top-32 left-4 sm:left-6 z-[70] flex items-center justify-center bg-black/50 hover:bg-black/80 backdrop-blur-md border border-white/10 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all duration-300 hover:border-gold hover:text-gold shadow-lg group pointer-events-auto"
+          onClick={() => {
+            if (window.history.length > 1) {
+              navigate(-1);
+            } else {
+              navigate("/");
+            }
+          }}
+          className="fixed top-24 sm:top-32 left-4 sm:left-6 z-[70] flex md:hidden items-center justify-center bg-black/60 hover:bg-black/90 backdrop-blur-xl border border-gold/30 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all duration-300 hover:border-gold hover:text-gold shadow-[0_0_15px_rgba(0,0,0,0.5)] group pointer-events-auto active:scale-90"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 group-hover:-translate-x-1 transition-transform">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 group-hover:-translate-x-1 transition-transform">
             <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
           </svg>
         </button>
@@ -202,6 +209,9 @@ const Header = () => {
           </ul>
         </div>
       )}
+      
+      {/* MOBILE BOTTOM NAVBAR */}
+      <MobileNavbar />
     </>
   );
 };

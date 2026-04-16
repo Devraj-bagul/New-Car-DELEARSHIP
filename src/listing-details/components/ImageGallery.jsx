@@ -48,13 +48,13 @@ const ImageGallery = ({ carDetail }) => {
         pagination={{ clickable: true }}
         loop={true}
         spaceBetween={10}
-        className="rounded-xl shadow-lg w-full h-[260px] md:h-[500px]"
+        className="rounded-3xl md:rounded-xl shadow-2xl w-full h-[280px] md:h-[500px] border border-white/5"
       >
         {carDetail?.images?.map((img, index) => (
           <SwiperSlide key={index}>
             <img
               src={img.imageUrl}
-              className="w-full h-full object-contain md:object-cover rounded-xl cursor-pointer"
+              className="w-full h-full object-contain md:object-cover rounded-3xl md:rounded-xl cursor-pointer bg-black/5 dark:bg-white/5"
               alt="Car"
               onClick={() => setFullscreenImg(img.imageUrl)}
             />

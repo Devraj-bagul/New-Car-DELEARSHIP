@@ -68,17 +68,17 @@ const Header = () => {
       <div 
         className={`pointer-events-auto w-full max-w-[98%] sm:max-w-[95%] rounded-full transition-all duration-300 flex justify-between items-center px-4 sm:px-8 lg:px-12 ${
           isScrolled 
-            ? "bg-black/70 dark:bg-black/70 backdrop-blur-xl border border-gold/40 shadow-[0_10px_40px_rgba(0,0,0,0.6)] py-3 sm:py-4" 
-            : "bg-black/40 dark:bg-black/40 backdrop-blur-md border border-white/20 dark:border-white/20 shadow-2xl py-4 sm:py-6"
+            ? "bg-white/80 dark:bg-black/70 backdrop-blur-xl border border-black/10 dark:border-gold/40 shadow-xl dark:shadow-[0_10px_40px_rgba(0,0,0,0.6)] py-3 sm:py-4" 
+            : "bg-white/40 dark:bg-black/40 backdrop-blur-md border border-black/10 dark:border-white/20 shadow-lg py-4 sm:py-6"
         }`}
       >
         
         {/* LOGO */}
-        <Link to="/" className="flex items-center gap-2 sm:gap-4 group">
+        <Link to="/" className="flex flex-1 lg:flex-none items-center justify-center lg:justify-start gap-2 sm:gap-4 group lg:translate-x-0">
           <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-gold flex items-center justify-center group-hover:shadow-[0_0_15px_rgba(212,175,55,0.8)] transition-all">
             <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gold rounded-full"></div>
           </div>
-          <h1 className="text-xl sm:text-2xl md:text-3xl font-['Playfair_Display',_serif] font-bold tracking-widest text-gold drop-shadow-xl">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-['Playfair_Display',_serif] font-bold tracking-widest text-gold dark:text-gold italic drop-shadow-sm">
             VINIT CARS
           </h1>
         </Link>
@@ -87,28 +87,28 @@ const Header = () => {
         <ul className="hidden lg:flex gap-10 xl:gap-14 items-center text-base font-medium tracking-wider">
           
           <Link to="/">
-            <li className={`relative cursor-pointer transition-colors duration-300 font-medium ${isActive('/') ? 'text-gold' : 'text-gray-300 hover:text-white'}`}>
+            <li className={`relative cursor-pointer transition-colors duration-300 font-medium ${isActive('/') ? 'text-gold' : 'text-black/70 dark:text-gray-300 hover:text-black dark:hover:text-white'}`}>
               Home
               {isActive('/') && <span className="absolute left-0 -bottom-[6px] w-[60%] h-[2px] bg-gold rounded-full shadow-[0_0_8px_rgba(212,175,55,0.8)]"></span>}
             </li>
           </Link>
 
           <Link to="/search">
-            <li className={`relative cursor-pointer transition-colors duration-300 font-medium ${isActive('/search') ? 'text-gold' : 'text-gray-300 hover:text-white'}`}>
+            <li className={`relative cursor-pointer transition-colors duration-300 font-medium ${isActive('/search') ? 'text-gold' : 'text-black/70 dark:text-gray-300 hover:text-black dark:hover:text-white'}`}>
               Inventory
               {isActive('/search') && <span className="absolute left-0 -bottom-[6px] w-[60%] h-[2px] bg-gold rounded-full shadow-[0_0_8px_rgba(212,175,55,0.8)]"></span>}
             </li>
           </Link>
 
           <Link to="/global-showroom">
-            <li className={`relative cursor-pointer transition-colors duration-300 font-medium flex items-center gap-1.5 ${isActive('/global-showroom') ? 'text-gold' : 'text-gray-300 hover:text-white'}`}>
+            <li className={`relative cursor-pointer transition-colors duration-300 font-medium flex items-center gap-1.5 ${isActive('/global-showroom') ? 'text-gold' : 'text-black/70 dark:text-gray-300 hover:text-black dark:hover:text-white'}`}>
               Showroom <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
               {isActive('/global-showroom') && <span className="absolute left-0 -bottom-[6px] w-[60%] h-[2px] bg-gold rounded-full shadow-[0_0_8px_rgba(212,175,55,0.8)]"></span>}
             </li>
           </Link>
 
           <Link to="/contact">
-            <li className={`relative cursor-pointer transition-colors duration-300 font-medium ${isActive('/contact') ? 'text-gold' : 'text-gray-300 hover:text-white'}`}>
+            <li className={`relative cursor-pointer transition-colors duration-300 font-medium ${isActive('/contact') ? 'text-gold' : 'text-black/70 dark:text-gray-300 hover:text-black dark:hover:text-white'}`}>
               Contact
               {isActive('/contact') && <span className="absolute left-0 -bottom-[6px] w-[60%] h-[2px] bg-gold rounded-full shadow-[0_0_8px_rgba(212,175,55,0.8)]"></span>}
             </li>
@@ -131,7 +131,7 @@ const Header = () => {
           {isSignedIn ? (
             <div className="flex items-center gap-5">
               <Link to="/profile">
-                <Button className="hidden md:flex gap-2 bg-foreground text-background hover:bg-gold hover:text-black border border-transparent hover:border-gold transition-all duration-300 font-semibold rounded-full shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+                <Button className="hidden md:flex gap-2 bg-foreground text-background dark:bg-gold dark:text-black hover:bg-gold hover:text-black border border-transparent hover:border-gold transition-all duration-300 font-semibold rounded-full shadow-[0_0_15px_rgba(212,175,55,0.2)]">
                   Submit Listing
                 </Button>
               </Link>
@@ -143,24 +143,14 @@ const Header = () => {
                 className="flex items-center gap-2 text-gold group transition-all"
                 title="Admin Login"
               >
-                {/* <div className="p-2.5 rounded-full border border-gold/40 bg-gold/10 group-hover:bg-gold/30 group-hover:shadow-[0_0_20px_rgba(212,175,55,0.6)] transition duration-300">
-                  <MdFingerprint className="text-2xl" />
-                </div> */}
               </button>
             </div>
           )}
         </div>
 
-        {/* MOBILE MENU ICON */}
-        <div className="lg:hidden flex items-center gap-3 sm:gap-5 text-gold">
-          <ThemeToggle />
-          <HiMenu
-            className="text-2xl sm:text-3xl cursor-pointer hover:text-yellow-300 transition text-white"
-            onClick={() => setOpenMenu(true)}
-          />
-        </div>
       </div>
       </div>
+
 
       {/* MOBILE DRAWER */}
       {openMenu && (

@@ -50,6 +50,7 @@ const MobileNavbar = () => {
       id: "call",
       icon: HiPhone,
       label: "Call",
+      activeColor: "text-green-500",
       onClick: () => {
         window.location.href = "tel:9284438720";
       },
@@ -58,6 +59,7 @@ const MobileNavbar = () => {
       id: "location",
       icon: HiLocationMarker,
       label: "Maps",
+      activeColor: "text-blue-500",
       onClick: () => {
         window.open("https://maps.app.goo.gl/hHH2mwXLYE5S8Rpn9", "_blank");
       },
@@ -74,26 +76,28 @@ const MobileNavbar = () => {
 
   return (
     <div className="md:hidden fixed bottom-0 left-0 right-0 z-[100] px-3 pb-4 pointer-events-none">
-      <div className="bg-black/90 dark:bg-black/95 backdrop-blur-2xl border border-white/10 dark:border-white/5 rounded-3xl shadow-[0_-12px_40px_rgba(0,0,0,0.6)] flex items-center justify-between py-2.5 px-1.5 pointer-events-auto overflow-hidden">
+      <div className="bg-white/90 dark:bg-black/95 backdrop-blur-2xl border border-black/5 dark:border-white/5 rounded-3xl shadow-xl dark:shadow-[0_-12px_40px_rgba(0,0,0,0.6)] flex items-center justify-between py-2.5 px-1.5 pointer-events-auto overflow-hidden transition-all duration-300">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = item.isActive || (item.path && location.pathname === item.path);
+          
+          let iconColor = isActive ? (item.activeColor || "text-gold") : "text-black/60 dark:text-gray-400";
+          if (!isActive) {
+             if (item.id === 'call') iconColor = "text-green-600/70 dark:text-green-500/70";
+             if (item.id === 'location') iconColor = "text-blue-600/70 dark:text-blue-500/70";
+          }
           
           return (
             <motion.button
               key={item.id}
               onClick={item.onClick}
               whileTap={{ scale: 0.9, opacity: 0.8 }}
-              className={`flex flex-col items-center gap-1 transition-all duration-300 relative py-1 flex-1 min-w-[50px] ${
-                isActive 
-                  ? (item.activeColor || "text-gold") 
-                  : "text-gray-400"
-              }`}
+              className={`flex flex-col items-center gap-1 transition-all duration-300 relative py-1 flex-1 min-w-[50px] ${iconColor}`}
             >
               {isActive && (
                 <motion.div
                   layoutId="nav-bg"
-                  className="absolute inset-0 bg-white/5 rounded-2xl -z-10 mx-1"
+                  className="absolute inset-0 bg-gold/10 dark:bg-white/5 rounded-2xl -z-10 mx-1"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
@@ -106,7 +110,7 @@ const MobileNavbar = () => {
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="absolute -top-1.5 -right-2 flex h-4 w-4 items-center justify-center bg-red-500 rounded-full border-2 border-black"
+                    className="absolute -top-1.5 -right-2 flex h-4 w-4 items-center justify-center bg-red-500 rounded-full border-2 border-white dark:border-black"
                   >
                     <span className="text-[8px] font-black text-white leading-none">
                       {wishlist?.length || 0}

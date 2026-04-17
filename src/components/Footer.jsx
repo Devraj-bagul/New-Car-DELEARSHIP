@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "./ui/button";
 import { SignInButton } from "@clerk/clerk-react";
 import { FaHatCowboy } from "react-icons/fa";
+import ThemeToggle from "./ThemeToggle";
 
 const Footer = () => {
   return (
@@ -11,7 +12,17 @@ const Footer = () => {
         <div className="mx-auto max-w-7xl px-4 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-24 relative z-10">
           <div className="text-center">
             {/* Massive Heading */}
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wide uppercase bg-gradient-to-r from-gold via-yellow-500 to-yellow-600 bg-clip-text text-transparent drop-shadow-md font-['Playfair_Display']">
+            <h2 
+              className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wide uppercase font-['Playfair_Display'] mb-4"
+              style={{
+                color: '#D4AF37', // Premium Gold
+                textShadow: `
+                  1px 1px 0 #b8860b,
+                  2px 2px 0 #8b7500,
+                  3px 3px 6px rgba(0,0,0,0.4)
+                `
+              }}
+            >
               Vinit Auto Consultants
             </h2>
 
@@ -53,8 +64,14 @@ const Footer = () => {
           </div>
 
           <div className="mt-16 border-t border-border/50 pt-8 sm:flex sm:items-center sm:justify-between lg:mt-24">
-            <div className="flex flex-col items-center sm:items-start gap-2 mb-6 sm:mb-0">
-              <span className="text-gold px-2 text-xs tracking-widest uppercase font-semibold">Member of Vinit Auto Group</span>
+            <div className="flex flex-col items-center sm:items-start gap-4 mb-8 sm:mb-0">
+              <div className="flex items-center gap-4">
+                <span className="text-gold px-2 text-xs tracking-widest uppercase font-semibold">Member of Vinit Auto Group</span>
+                {/* Theme Toggle - Clean Placement */}
+                <div className="scale-75 origin-left">
+                  <ThemeToggle />
+                </div>
+              </div>
               <ul className="flex flex-wrap justify-center sm:justify-start gap-6 text-xs text-muted-foreground">
                 <li>
                   <a href="#" className="hover:text-gold transition-colors duration-300">
@@ -72,7 +89,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            <ul className="flex justify-center gap-6 lg:justify-end">
+            <ul className="flex justify-center gap-6 lg:justify-end items-center">
               <li>
                 <a
                   href="#"

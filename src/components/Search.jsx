@@ -79,14 +79,14 @@ const Search = () => {
 
   return (
     <div className="relative w-full" ref={searchRef}>
-      <div className="flex flex-col md:flex-row w-full gap-2 p-2 relative z-50">
+      <div className="flex flex-row w-full gap-2 relative z-50 h-full items-center p-1.5">
         
         {/* Search Input */}
-        <div className="flex-1 flex items-center px-4">
+        <div className="flex-1 flex items-center px-4 h-full">
           <input 
             type="text" 
-            placeholder="Type car name or brand (e.g. Creta, Swift, Hyundai...)" 
-            className="w-full bg-transparent border-none text-foreground text-md md:text-lg focus:outline-none py-3 placeholder-foreground/40 font-medium"
+            placeholder="Type car name or brand..." 
+            className="w-full bg-transparent border-none text-black dark:text-foreground text-sm md:text-base focus:outline-none py-1 placeholder-black/40 dark:placeholder-foreground/40 font-medium"
             value={query}
             onChange={handleInputChange}
             onFocus={() => query.trim().length > 0 && setShowSuggestions(true)}
@@ -95,18 +95,19 @@ const Search = () => {
         </div>
 
         {/* Search Button */}
-        <div className="md:w-auto">
+        <div className="w-auto h-full flex items-center">
           <button
             onClick={handleSearch}
             className="
-              w-full md:w-auto bg-gold text-midnight px-12 py-3.5 rounded-[12px]
-              font-extrabold text-lg hover:bg-yellow-500 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)]
-              transition-all duration-300 flex items-center justify-center gap-3
-              active:scale-95
+              h-full bg-gold text-midnight px-4 md:px-8 rounded-xl
+              font-extrabold text-sm hover:bg-yellow-500 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]
+              transition-all duration-300 flex items-center justify-center gap-2
+              active:scale-95 whitespace-nowrap
             "
           >
-            <TbSettingsSearch className="text-2xl" />
-            <span>Search Inventory</span>
+            <TbSettingsSearch className="text-xl shrink-0" />
+            <span className="hidden sm:inline">Search Inventory</span>
+            <span className="sm:hidden">Search</span>
           </button>
         </div>
       </div>

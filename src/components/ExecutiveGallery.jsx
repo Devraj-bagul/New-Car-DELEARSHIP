@@ -12,7 +12,7 @@ const ExecutiveGallery = () => {
   const isMobile = useIsMobile();
 
   return (
-    <div className="w-full py-24 bg-midnight text-white relative">
+    <div className="w-full py-24 bg-white dark:bg-midnight text-foreground relative transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         
         <div className="flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-20">
@@ -22,21 +22,18 @@ const ExecutiveGallery = () => {
             initial={{ opacity: 0, x: isMobile ? 0 : -30 }}
             whileInView={isMobile ? { opacity: 1 } : { opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="w-full md:w-1/2 flex flex-col"
+            className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left"
           >
-            <span className="text-gold uppercase tracking-[0.3em] font-semibold text-sm mb-4 block">The Visionary</span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-wide mb-8">
-              Mind Behind <br/><span className="text-gold font-serif italic">The Machine</span>
+            <span className="text-black dark:text-gold uppercase tracking-[0.3em] font-semibold text-sm mb-4 block">The Visionary</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-wide mb-8 text-black dark:text-white leading-tight">
+              Mind Behind <br/><span className="text-black dark:text-gold font-black italic">The Machine</span>
             </h2>
-            <p className="text-gray-400 font-light text-base lg:text-lg leading-relaxed mb-12">
-              Curating automotive excellence requires an uncompromising eye for detail and a passion that borders on obsession. Meet the individual who shapes the vision and standard of Vinit Cars.
-            </p>
             
-            <div className="pl-6 border-l-2 border-gold/50">
-              <p className="text-xl md:text-2xl font-serif italic text-white/90 mb-4 tracking-wide leading-snug">
+            <div className="pl-0 md:pl-6 border-l-0 md:border-l-2 border-black/10 dark:border-gold/50 flex flex-col items-center md:items-start mb-12">
+              <p className="text-xl md:text-2xl font-serif italic text-black dark:text-white/90 mb-4 tracking-wide leading-relaxed">
                 "Our commitment is not just to sell cars, but to deliver a masterpiece of engineering accompanied by an unparalleled ownership experience."
               </p>
-              <h4 className="text-gold font-medium tracking-widest uppercase text-sm">- Vinit Bagul</h4>
+              <h4 className="text-black dark:text-gold font-black tracking-widest uppercase text-sm">- Vinit Bagul</h4>
             </div>
           </motion.div>
 
@@ -49,7 +46,7 @@ const ExecutiveGallery = () => {
             className="w-full md:w-1/2 group relative cursor-pointer"
           >
             {/* Image Container with elegant clean look */}
-            <div className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-sm bg-neutral-900 border border-neutral-800 shadow-2xl">
+            <div className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800 shadow-2xl">
               {/* Subtle bottom gradient just for text legibility, no hover dimming effects */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 pointer-events-none"></div>
               
@@ -64,8 +61,31 @@ const ExecutiveGallery = () => {
               {/* Text Overlay inside Image */}
               <div className={`absolute bottom-0 left-0 p-8 lg:p-10 z-20 w-full ${!isMobile ? 'translate-y-4 group-hover:translate-y-0' : ''} transition-transform duration-500`}>
                 <div className={`w-16 h-[2px] bg-gold mb-5 ${!isMobile ? 'scale-x-0 group-hover:scale-x-100' : ''} origin-left transition-transform duration-500 delay-100`}></div>
-                <h3 className="text-3xl lg:text-4xl font-semibold tracking-wider mb-2 text-white drop-shadow-md">{founder.name}</h3>
-                <p className="text-gold font-serif italic text-lg tracking-wide drop-shadow-md">{founder.role}</p>
+                <h3 
+                  className="tracking-wider mb-2 drop-shadow-md"
+                  style={{
+                    fontSize: '28px',
+                    fontWeight: '700',
+                    color: '#fff',
+                    textShadow: `
+                      1px 1px 0 #999,
+                      2px 2px 0 #666,
+                      3px 3px 6px rgba(0,0,0,0.3)
+                    `
+                  }}
+                >
+                  {founder.name}
+                </h3>
+                <p 
+                  className="font-serif italic text-lg tracking-wider drop-shadow-md"
+                  style={{
+                    color: '#d4af37',
+                    fontWeight: '600',
+                    letterSpacing: '1px'
+                  }}
+                >
+                  {founder.role}
+                </p>
               </div>
 
               {/* Decorative Corner Borders - Reduced on mobile */}

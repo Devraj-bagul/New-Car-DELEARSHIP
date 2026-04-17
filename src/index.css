@@ -125,6 +125,18 @@
   }
   body {
     @apply bg-background text-foreground transition-colors duration-300;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* NO SCROLLBAR UTILITY */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
 

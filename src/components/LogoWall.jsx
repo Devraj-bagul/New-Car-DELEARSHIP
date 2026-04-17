@@ -15,10 +15,10 @@ const LogoWall = () => {
             0% { transform: translateX(-50%); }
             100% { transform: translateX(0%); }
           }
-          .animate-infinite-scroll-right {
+          .animate-infinite-scroll {
             display: flex;
             width: max-content;
-            animation: scrollRight 40s linear infinite;
+            animation: scrollRight 20s linear infinite;
           }
         `}
       </style>
@@ -48,10 +48,10 @@ const LogoWall = () => {
       <div className="w-full overflow-hidden pb-8 mx-auto relative z-10 mt-4">
         
         {/* Fading Edges */}
-        <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-[#Fcfcfc] dark:from-background to-transparent z-20 pointer-events-none transition-colors duration-300"></div>
-        <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-[#Fcfcfc] dark:from-background to-transparent z-20 pointer-events-none transition-colors duration-300"></div>
+        <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-background to-transparent z-20 pointer-events-none transition-colors duration-300"></div>
+        <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-background to-transparent z-20 pointer-events-none transition-colors duration-300"></div>
 
-        <div className="animate-infinite-scroll-right gap-6 sm:gap-8 md:gap-10 lg:gap-12 px-4 will-change-transform">
+        <div className="animate-infinite-scroll gap-6 sm:gap-8 md:gap-10 lg:gap-12 px-4 will-change-transform">
           {[...logos, ...logos].map((src, index) => (
             <motion.div 
               key={index}

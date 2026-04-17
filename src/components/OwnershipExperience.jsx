@@ -161,7 +161,7 @@ const OwnershipExperience = () => {
                   <div className={`w-full h-full rounded-2xl bg-gradient-to-tr from-gold via-amber-100 to-yellow-600 ${isMobile ? 'p-[2px]' : 'p-[3px]'} shadow-[0_5px_15px_rgba(212,175,55,0.15)]`}>
                     <div className="w-full h-full rounded-2xl bg-white p-6 flex flex-col justify-between relative overflow-hidden z-10">
                       
-                      {!isMobile && <FaQuoteRight className="absolute -bottom-4 -right-1 text-8xl text-gold/5 z-0 -rotate-12 pointer-events-none transition-transform duration-700 group-hover:scale-110" />}
+                      
 
                       <div className="relative z-10">
                         <div className="flex text-yellow-500 mb-4 text-sm drop-shadow-sm">
@@ -191,7 +191,7 @@ const OwnershipExperience = () => {
                   <div className={`w-full h-full rounded-2xl bg-gradient-to-tr from-gold via-amber-100 to-yellow-600 ${isMobile ? 'p-[2px]' : 'p-[3px]'} shadow-[0_5px_15px_rgba(212,175,55,0.15)]`}>
                     <div className="w-full h-full rounded-2xl bg-white p-6 flex flex-col justify-between relative overflow-hidden z-10">
                       
-                      {!isMobile && <FaQuoteRight className="absolute -bottom-4 -right-1 text-8xl text-gold/5 z-0 -rotate-12 pointer-events-none transition-transform duration-700 group-hover:scale-110" />}
+                      
 
                       <div className="relative z-10">
                         <div className="flex text-yellow-500 mb-4 text-sm drop-shadow-sm">

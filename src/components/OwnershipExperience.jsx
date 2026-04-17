@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGem, FaGlobeAmericas, FaStar, FaStarHalfAlt, FaQuoteRight } from 'react-icons/fa';
+import useIsMobile from '../Shared/useIsMobile';
 
 const reviewsData = [
   {
@@ -40,6 +41,8 @@ const reviewsData = [
 const carImages = Array.from({ length: 12 }, (_, i) => `/car/car img ${i + 1}.jpg`);
 
 const OwnershipExperience = () => {
+  const isMobile = useIsMobile();
+
   return (
     <div className="w-full py-24 bg-transparent relative overflow-hidden">
       <style>
@@ -74,16 +77,16 @@ const OwnershipExperience = () => {
         {/* Auto Scrolling Cars Gallery */}
         <div className="text-center mb-12 px-5">
            <motion.h2 
-             initial={{ opacity: 0, y: 20 }}
-             whileInView={{ opacity: 1, y: 0 }}
+             initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
+             whileInView={isMobile ? { opacity: 1 } : { opacity: 1, y: 0 }}
              viewport={{ once: true }}
              className="text-4xl md:text-5xl font-light text-foreground tracking-wide mb-4 transition-colors duration-300"
            >
              Our Exquisite <span className="text-gold font-serif italic">Fleet</span>
            </motion.h2>
            <motion.p 
-             initial={{ opacity: 0, y: 20 }}
-             whileInView={{ opacity: 1, y: 0 }}
+             initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
+             whileInView={isMobile ? { opacity: 1 } : { opacity: 1, y: 0 }}
              viewport={{ once: true }}
              transition={{ delay: 0.2 }}
              className="text-muted-foreground max-w-2xl mx-auto font-light text-lg"
@@ -93,30 +96,28 @@ const OwnershipExperience = () => {
         </div>
 
         <div className="w-full relative overflow-hidden py-10">
-          {/* Fading Edges to make the scroll seamless into the background */}
+          {/* Fading Edges */}
           <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-[#Fcfcfc] dark:from-background to-transparent z-20 pointer-events-none transition-colors duration-300"></div>
           <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-[#Fcfcfc] dark:from-background to-transparent z-20 pointer-events-none transition-colors duration-300"></div>
           
           {/* Scrolling Container */}
-          <div className="animate-infinite-scroll gap-6 px-4 cursor-pointer">
+          <div className="animate-infinite-scroll gap-6 px-4 cursor-pointer will-change-transform">
             {[...carImages, ...carImages].map((src, index) => (
               <div 
                 key={index} 
-                className="w-72 h-48 md:w-[450px] md:h-[300px] flex-shrink-0 group relative rounded-2xl overflow-hidden bg-card border border-border/80 hover:border-gold shadow-lg hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)] transition-all duration-500"
+                className="w-72 h-48 md:w-[450px] md:h-[300px] flex-shrink-0 group relative rounded-2xl overflow-hidden bg-card border border-border/80 md:hover:border-gold shadow-lg md:hover:shadow-[0_10px_30px_rgba(212,175,55,0.2)] transition-all duration-500"
               >
                 {/* Image */}
                 <img 
                   src={src} 
                   alt={`Vinit Cars Collection ${index + 1}`} 
-                  className="w-full h-full object-cover filter brightness-95 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-in-out"
+                  className="w-full h-full object-cover filter brightness-95 md:group-hover:brightness-100 md:group-hover:scale-105 transition-all duration-700 ease-in-out"
                   loading="lazy"
+                  decoding="async"
                 />
                 
                 {/* Premium Golden Overlay subtle effect */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute bottom-4 left-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                   <p className="text-gold tracking-widest text-sm uppercase font-semibold drop-shadow-md">View Details</p>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 md:group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             ))}
           </div>
@@ -129,22 +130,22 @@ const OwnershipExperience = () => {
           <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-[#Fcfcfc] dark:from-background to-transparent z-20 pointer-events-none transition-colors duration-300"></div>
           <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-[#Fcfcfc] dark:from-background to-transparent z-20 pointer-events-none transition-colors duration-300"></div>
 
-          {/* Professional Ambient Background Design */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl bg-gold/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
+          {/* Professional Ambient Background Design - Reduced on mobile */}
+          <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full ${isMobile ? 'max-w-xl blur-[80px]' : 'max-w-4xl blur-[120px]'} bg-gold/10 rounded-full pointer-events-none z-0`}></div>
 
-          <div className="relative z-10 w-full">
+          <div className="relative z-10 w-full font-['Outfit',_sans-serif]">
             <div className="text-center mb-16 px-5">
               <motion.h3 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
+                whileInView={isMobile ? { opacity: 1 } : { opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className="text-3xl md:text-4xl font-light text-foreground tracking-wide mb-4 transition-colors duration-300"
               >
                 Client <span className="text-gold font-serif italic">Testimonials</span>
               </motion.h3>
               <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: isMobile ? 0 : 10 }}
+                whileInView={isMobile ? { opacity: 1 } : { opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
                 className="text-gold uppercase tracking-widest text-sm"
@@ -154,13 +155,13 @@ const OwnershipExperience = () => {
             </div>
 
             {/* Row 1: Scrolls Left to Right */}
-            <div className="animate-testimonials-row1 gap-6 px-4 mb-6 cursor-default">
+            <div className="animate-testimonials-row1 gap-6 px-4 mb-6 cursor-default will-change-transform">
               {[...reviewsData.slice(0, 4), ...reviewsData.slice(0, 4), ...reviewsData.slice(0, 4)].map((item, index) => (
-                <div key={`row1-${index}`} className="w-[320px] md:w-[400px] flex-shrink-0 group">
-                  <div className="w-full h-full rounded-2xl bg-gradient-to-tr from-gold via-amber-100 to-yellow-600 p-[3px] shadow-[0_5px_15px_rgba(212,175,55,0.15)] transition-all duration-300">
+                <div key={`row1-${index}`} className="w-[300px] md:w-[400px] flex-shrink-0 group">
+                  <div className={`w-full h-full rounded-2xl bg-gradient-to-tr from-gold via-amber-100 to-yellow-600 ${isMobile ? 'p-[2px]' : 'p-[3px]'} shadow-[0_5px_15px_rgba(212,175,55,0.15)]`}>
                     <div className="w-full h-full rounded-2xl bg-white p-6 flex flex-col justify-between relative overflow-hidden z-10">
                       
-                      <FaQuoteRight className="absolute -bottom-4 -right-1 text-8xl text-gold/5 z-0 -rotate-12 pointer-events-none transition-transform duration-700 group-hover:scale-110" />
+                      {!isMobile && <FaQuoteRight className="absolute -bottom-4 -right-1 text-8xl text-gold/5 z-0 -rotate-12 pointer-events-none transition-transform duration-700 group-hover:scale-110" />}
 
                       <div className="relative z-10">
                         <div className="flex text-yellow-500 mb-4 text-sm drop-shadow-sm">
@@ -177,8 +178,6 @@ const OwnershipExperience = () => {
                         </div>
                         <h4 className="font-semibold text-neutral-900 tracking-wide text-sm md:text-base">{item.name}</h4>
                       </div>
-
-                      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent -translate-x-[150%] transition-transform duration-1000 ease-in-out pointer-events-none z-20"></div>
                     </div>
                   </div>
                 </div>
@@ -186,13 +185,13 @@ const OwnershipExperience = () => {
             </div>
 
             {/* Row 2: Scrolls Right to Left */}
-            <div className="animate-testimonials-row2 gap-6 px-4 cursor-default">
+            <div className="animate-testimonials-row2 gap-6 px-4 cursor-default will-change-transform">
               {[...reviewsData.slice(4, 8), ...reviewsData.slice(4, 8), ...reviewsData.slice(4, 8)].map((item, index) => (
-                <div key={`row2-${index}`} className="w-[320px] md:w-[400px] flex-shrink-0 group">
-                  <div className="w-full h-full rounded-2xl bg-gradient-to-tr from-gold via-amber-100 to-yellow-600 p-[3px] shadow-[0_5px_15px_rgba(212,175,55,0.15)] transition-all duration-300">
+                <div key={`row2-${index}`} className="w-[300px] md:w-[400px] flex-shrink-0 group">
+                  <div className={`w-full h-full rounded-2xl bg-gradient-to-tr from-gold via-amber-100 to-yellow-600 ${isMobile ? 'p-[2px]' : 'p-[3px]'} shadow-[0_5px_15px_rgba(212,175,55,0.15)]`}>
                     <div className="w-full h-full rounded-2xl bg-white p-6 flex flex-col justify-between relative overflow-hidden z-10">
                       
-                      <FaQuoteRight className="absolute -bottom-4 -right-1 text-8xl text-gold/5 z-0 -rotate-12 pointer-events-none transition-transform duration-700 group-hover:scale-110" />
+                      {!isMobile && <FaQuoteRight className="absolute -bottom-4 -right-1 text-8xl text-gold/5 z-0 -rotate-12 pointer-events-none transition-transform duration-700 group-hover:scale-110" />}
 
                       <div className="relative z-10">
                         <div className="flex text-yellow-500 mb-4 text-sm drop-shadow-sm">
@@ -209,8 +208,6 @@ const OwnershipExperience = () => {
                         </div>
                         <h4 className="font-semibold text-neutral-900 tracking-wide text-sm md:text-base">{item.name}</h4>
                       </div>
-
-                      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent -translate-x-[150%] transition-transform duration-1000 ease-in-out pointer-events-none z-20"></div>
                     </div>
                   </div>
                 </div>
@@ -226,3 +223,4 @@ const OwnershipExperience = () => {
 };
 
 export default OwnershipExperience;
+

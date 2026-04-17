@@ -6,7 +6,7 @@ import { useAppContext } from "../Shared/AppContext";
 import { motion } from "framer-motion";
 
 const MobileNavbar = () => {
-  const { isTwoColumnGrid, setIsTwoColumnGrid, showWishlistOnly, setShowWishlistOnly } = useAppContext();
+  const { isTwoColumnGrid, setIsTwoColumnGrid, showWishlistOnly, setShowWishlistOnly, wishlist } = useAppContext();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -97,17 +97,28 @@ const MobileNavbar = () => {
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
-              <Icon className={`text-xl ${isActive ? "scale-110 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]" : "scale-100 opacity-70"} transition-all`} />
+              
+              <div className="relative">
+                <Icon className={`text-xl ${isActive ? "scale-110 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]" : "scale-100 opacity-70"} transition-all`} />
+                
+                {/* Wishlist Notification Badge */}
+                {item.id === "wishlist" && wishlist?.length > 0 && (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="absolute -top-1.5 -right-2 flex h-4 w-4 items-center justify-center bg-red-500 rounded-full border-2 border-black"
+                  >
+                    <span className="text-[8px] font-black text-white leading-none">
+                      {wishlist?.length || 0}
+                    </span>
+                    <span className="absolute inset-0 rounded-full bg-red-500 animate-ping opacity-20 -z-10"></span>
+                  </motion.div>
+                )}
+              </div>
+
               <span className={`text-[9px] font-bold tracking-tight uppercase ${isActive ? "opacity-100" : "opacity-60"}`}>
                 {item.label}
               </span>
-              
-              {item.id === "wishlist" && isActive && (
-                <span className="absolute top-1 right-2 flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
-                </span>
-              )}
             </motion.button>
           );
         })}

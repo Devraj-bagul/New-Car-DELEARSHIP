@@ -10,7 +10,7 @@ import { FaInstagram } from "react-icons/fa";
 import { HiHeart, HiOutlineHeart, HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { useAppContext } from "../Shared/AppContext";
 
-const CarItem = ({ car }) => {
+const CarItem = React.memo(({ car }) => {
   const { toggleWishlist, isInWishlist, isTwoColumnGrid } = useAppContext();
   const isLiked = isInWishlist(car?.id);
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
@@ -34,11 +34,8 @@ const CarItem = ({ car }) => {
   return (
     <Link to={`/listing-details/${car?.id}`}>
       <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`rounded-2xl bg-card border border-border hover:border-gold/50 shadow-lg hover:shadow-[0_0_25px_rgba(212,175,55,0.3)] transition-all duration-300 cursor-pointer relative group overflow-hidden flex flex-col h-full ${
+        layout="position"
+        className={`rounded-2xl bg-card border border-border hover:border-gold/50 shadow-lg hover:shadow-[0_0_25px_rgba(212,175,55,0.3)] transition-all duration-300 cursor-pointer relative group overflow-hidden flex flex-col h-full will-change-transform ${
           isTwoColumnGrid ? "p-0" : ""
         }`}
       >
@@ -58,23 +55,30 @@ const CarItem = ({ car }) => {
         )}
 
         {/* Wishlist Button */}
-        <button 
+        <motion.button 
+          whileTap={{ scale: 1.4 }}
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
             toggleWishlist(car?.id);
           }}
-          className={`absolute z-30 flex items-center justify-center bg-white/90 backdrop-blur-md rounded-full hover:scale-110 transition-transform duration-300 shadow-lg cursor-pointer group/wishlist ${
+          className={`absolute z-30 flex items-center justify-center bg-white/90 backdrop-blur-md rounded-full shadow-lg cursor-pointer group/wishlist ${
             isTwoColumnGrid ? "top-2 right-2 w-7 h-7" : "top-3 right-14 w-9 h-9"
           }`}
           title={isLiked ? "Remove from Wishlist" : "Add to Wishlist"}
         >
-          {isLiked ? (
-            <HiHeart className={`${isTwoColumnGrid ? 'text-lg' : 'text-xl'} text-red-500 transition-transform duration-300 group-hover/wishlist:scale-110`} />
-          ) : (
-            <HiOutlineHeart className={`${isTwoColumnGrid ? 'text-lg' : 'text-xl'} text-gray-600 transition-transform duration-300 group-hover/wishlist:scale-110`} />
-          )}
-        </button>
+          <motion.div
+            initial={false}
+            animate={{ scale: isLiked ? [1, 1.2, 1] : 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            {isLiked ? (
+              <HiHeart className={`${isTwoColumnGrid ? 'text-lg' : 'text-xl'} text-red-500`} />
+            ) : (
+              <HiOutlineHeart className={`${isTwoColumnGrid ? 'text-lg' : 'text-xl'} text-gray-600`} />
+            )}
+          </motion.div>
+        </motion.button>
 
         {/* Condition Badge - Only in 1-column */}
         {!isTwoColumnGrid && (
@@ -85,7 +89,7 @@ const CarItem = ({ car }) => {
 
         {/* IMAGE / SLIDER */}
         <div className={`w-full bg-secondary/30 overflow-hidden relative group/slider ${
-          isTwoColumnGrid ? "h-[130px]" : "h-[200px]"
+          isTwoColumnGrid ? "h-[140px]" : "h-[200px]"
         }`}>
           {!isTwoColumnGrid && images.length > 1 && (
             <>
@@ -117,7 +121,9 @@ const CarItem = ({ car }) => {
           <img
             src={images[currentImageIndex]}
             alt={car?.listingTitle}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -149,7 +155,7 @@ const CarItem = ({ car }) => {
             </>
           )}
 
-          <div className={`flex items-center justify-between mt-auto ${isTwoColumnGrid ? "" : ""}`}>
+          <div className={`flex items-center justify-between mt-auto`}>
             <h2 className={`font-extrabold text-foreground ${
               isTwoColumnGrid ? "text-base" : "text-xl md:text-2xl"
             }`}>
@@ -165,6 +171,7 @@ const CarItem = ({ car }) => {
       </motion.div>
     </Link>
   );
-};
+});
+
 
 export default CarItem;

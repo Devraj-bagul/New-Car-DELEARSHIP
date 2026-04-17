@@ -16,11 +16,14 @@ import FinancialCalculator from "../components/FinancialCalculator";
 import Footer from "@/components/Footer";
 import MostSearchedCar from "@/components/MostSearchedCar";
 import { motion } from "framer-motion";
+import useIsMobile from "@/Shared/useIsMobile";
 
 const ListingDetail = () => {
   const { id } = useParams();
   const [carDetail, setCarDetail] = useState();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
+
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -73,13 +76,13 @@ const ListingDetail = () => {
 
         {/* MAIN CONTENT */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="p-5 md:p-10 md:px-20 pt-28 md:pt-36"
         >
           <motion.div
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: isMobile ? 0 : 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
@@ -88,33 +91,33 @@ const ListingDetail = () => {
 
           {/* MOBILE */}
           <div className="block md:hidden space-y-6 mt-6">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div className="will-change-transform">
               <ImageGallery carDetail={carDetail} />
-            </motion.div>
+            </div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div>
               <Pricing carDetail={carDetail} />
-            </motion.div>
+            </div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div>
               <Description carDetail={carDetail} />
-            </motion.div>
+            </div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div>
               <Specification carDetail={carDetail} />
-            </motion.div>
+            </div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div>
               <Features features={carDetail?.features} />
-            </motion.div>
+            </div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div>
               <OwnersDetail carDetail={carDetail} />
-            </motion.div>
+            </div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div>
               <FinancialCalculator carDetail={carDetail} />
-            </motion.div>
+            </div>
           </div>
 
           {/* DESKTOP */}
@@ -152,6 +155,7 @@ const ListingDetail = () => {
             </div>
           </div>
         </motion.div>
+
 
         <MostSearchedCar />
         <Footer />

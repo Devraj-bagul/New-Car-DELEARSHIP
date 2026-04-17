@@ -117,6 +117,9 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   * {
     @apply border-border outline-ring/50;
   }
@@ -124,3 +127,43 @@
     @apply bg-background text-foreground transition-colors duration-300;
   }
 }
+
+/* MOBILE PERFORMANCE OPTIMIZATIONS (Max-width: 768px) */
+@media (max-width: 768px) {
+  * {
+    /* Fast touch response */
+    touch-action: manipulation;
+    /* Reduce tap highlight delay */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Reduce heavy rendering properties that cause scroll lag */
+  .backdrop-blur-sm,
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl,
+  .backdrop-blur-3xl {
+    backdrop-filter: blur(4px) !important; /* Lowers blur intensity for performance */
+    -webkit-backdrop-filter: blur(4px) !important;
+  }
+
+  /* Prevent layout shift during image loading */
+  img {
+    content-visibility: auto;
+  }
+
+  /* Promote complex containers to GPU layer */
+  .will-change-transform {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Simplify transitions */
+  .transition-all {
+    transition-property: transform, opacity !important;
+    transition-duration: 200ms !important;
+  }
+}
+

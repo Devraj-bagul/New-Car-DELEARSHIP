@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { toast } from 'sonner';
 
 const AppContext = createContext();
 
@@ -21,11 +22,18 @@ export const AppProvider = ({ children }) => {
   }, [wishlist]);
 
   const toggleWishlist = (carId) => {
-    setWishlist((prev) =>
-      prev.includes(carId)
-        ? prev.filter((id) => id !== carId)
-        : [...prev, carId]
-    );
+    setWishlist((prev) => {
+      const isRemoving = prev.includes(carId);
+      if (isRemoving) {
+        toast.info("Removed from Wishlist 💔");
+        return prev.filter((id) => id !== carId);
+      } else {
+        toast.success("Added to Wishlist ❤️", {
+          description: "This beauty is now in your collection!",
+        });
+        return [...prev, carId];
+      }
+    });
   };
 
   const isInWishlist = (carId) => wishlist.includes(carId);

@@ -82,24 +82,24 @@ const HappyCustomers = () => {
         <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-background to-transparent z-20 pointer-events-none"></div>
 
         {/* Scrolling Grid */}
-        <div className="animate-happy-customers-scroll gap-6 sm:gap-8 md:gap-10 px-4">
+        <div className="animate-happy-customers-scroll gap-6 sm:gap-8 md:gap-10 px-4 will-change-transform">
           {[...reels, ...reels, ...reels].map((item, idx) => (
             <div
               key={idx}
               className="
                 group relative bg-card rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)] 
                 p-2 border border-border flex flex-col items-center justify-center cursor-pointer
-                aspect-[9/16] overflow-hidden hover:border-gold/50 transition-all duration-500
-                w-[280px] sm:w-[320px] flex-shrink-0 hover:-translate-y-2
+                aspect-[9/16] overflow-hidden md:hover:border-gold/50 transition-all duration-500
+                w-[280px] sm:w-[320px] flex-shrink-0 md:hover:-translate-y-2 active:scale-95
               "
               onClick={() => setActiveVideo(idx)}
             >
               <div className="w-full h-full rounded-xl overflow-hidden relative">
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500 z-10 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-black/20 md:group-hover:bg-black/0 transition-colors duration-500 z-10 pointer-events-none"></div>
                 <iframe
                   loading="lazy"
                   ref={(el) => (iframeRefs.current[idx] = el)}
-                  className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
+                  className="w-full h-full object-cover scale-105 md:group-hover:scale-100 transition-transform duration-700"
                   src={cleanEmbed(item.original)}
                   title={`Happy Customer Reel ${idx}`}
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;"
@@ -110,6 +110,7 @@ const HappyCustomers = () => {
             </div>
           ))}
         </div>
+
       </div>
 
       {/* Watch More Button */}

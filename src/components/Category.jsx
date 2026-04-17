@@ -2,15 +2,18 @@ import Data from '@/Shared/Data'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import useIsMobile from '../Shared/useIsMobile'
 
 const Category = () => {
+  const isMobile = useIsMobile();
+
   return (
     <div className="mt-16 sm:mt-24 w-full">
 
       {/* Title */}
       <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
+        whileInView={isMobile ? { opacity: 1 } : { opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
         className="font-bold text-3xl text-center mb-10 text-gray-900 dark:text-white transition-colors duration-300"
@@ -21,8 +24,8 @@ const Category = () => {
       {/* Center Wrapper */}
       <div className="flex justify-center w-full">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
+          whileInView={isMobile ? { opacity: 1 } : { opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
           className="
@@ -32,6 +35,7 @@ const Category = () => {
             w-full 
             mx-auto 
             px-4
+            pb-10
           "
         >
           {Data.Category.map((category, index) => (
@@ -39,31 +43,35 @@ const Category = () => {
               
               {/* CARD */}
               <motion.div
-                whileHover={{ scale: 1.05 }}
+                whileHover={isMobile ? {} : { scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
                 className="relative cursor-pointer group w-[140px] h-[120px] sm:w-[160px] sm:h-[140px]"
               >
-                {/* 🔥 NEON BLUE ROTATING BORDER */}
-                <div
-                  className="
-                    absolute inset-0 rounded-xl p-[2px]
-                    bg-[conic-gradient(#D4AF37,#F3E5AB,#D4AF37)]
-                    animate-spin-slow
-                    blur-[2px] opacity-60 group-hover:opacity-100 transition-opacity
-                  "
-                ></div>
+                {/* 🔥 NEON BLUE ROTATING BORDER - Disabled on mobile for performance */}
+                {!isMobile && (
+                  <div
+                    className="
+                      absolute inset-0 rounded-xl p-[2px]
+                      bg-[conic-gradient(#D4AF37,#F3E5AB,#D4AF37)]
+                      animate-spin-slow
+                      blur-[2px] opacity-60 group-hover:opacity-100 transition-opacity
+                    "
+                  ></div>
+                )}
 
                 {/* MAIN CARD */}
                 <div
-                  className="
+                  className={`
                     absolute inset-[2px] bg-card rounded-[10px] 
                     p-4 sm:p-5 
                     flex flex-col items-center justify-center
                     z-10
-                  "
+                    ${isMobile ? 'border border-gold/10 shadow-md' : ''}
+                  `}
                 >
-                  <img src={category.icon} className="w-[35px] h-[35px] sm:w-[45px] sm:h-[45px] object-contain dark:invert" alt="" />
-                  <h2 className="mt-3 text-sm sm:text-base font-medium text-foreground text-center">
+                  <img src={category.icon} className="w-[35px] h-[35px] sm:w-[45px] sm:h-[45px] object-contain dark:invert" alt="" loading="lazy" />
+                  <h2 className="mt-3 text-sm sm:text-base font-medium text-foreground text-center line-clamp-1">
                     {category.name}
                   </h2>
                 </div>
@@ -77,5 +85,6 @@ const Category = () => {
     </div>
   )
 }
+
 
 export default Category

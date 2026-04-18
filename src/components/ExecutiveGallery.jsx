@@ -5,7 +5,7 @@ import useIsMobile from '../Shared/useIsMobile';
 const founder = {
   name: "VINIT BAGUL",
   role: "Founder & CEO",
-  imageUrl: "https://res.cloudinary.com/dalo5zpik/image/upload/v1774860997/owner_lyqb8n.jpg"
+  imageUrl: "https://thumbs.dreamstime.com/b/young-indian-man-suit-155582044.jpg"
 };
 
 const ExecutiveGallery = () => {

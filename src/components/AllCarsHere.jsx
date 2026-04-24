@@ -50,11 +50,15 @@ const ALLCarsHere = () => {
           carListing: {
             id: CarListing.id,
             listingTitle: CarListing.listingTitle,
+            originalPrice: CarListing.originalPrice,
             sellingPrice: CarListing.sellingPrice,
             mileage: CarListing.mileage,
             fuelType: CarListing.fuelType,
             transmission: CarListing.transmission,
             condition: CarListing.condition,
+            make: CarListing.make,
+            model: CarListing.model,
+            vehicleRegCode: CarListing.vehicleRegCode,
             instagramUrl: CarListing.instagramUrl,
           },
           carImages: {

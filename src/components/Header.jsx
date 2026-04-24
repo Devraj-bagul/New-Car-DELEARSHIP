@@ -159,7 +159,7 @@ const Header = () => {
 
         {/* DESKTOP SUBMIT BUTTON & PROFILE */}
         <div className="hidden lg:flex items-center gap-6">
-          <ThemeToggle />
+          {/* Theme Toggle Removed */}
           {isSignedIn ? (
             <div className="flex items-center gap-5">
               <Link to="/profile">

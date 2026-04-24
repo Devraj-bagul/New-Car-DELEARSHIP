@@ -1,7 +1,7 @@
 {
   "carDetails": [
     {
-      "label": "Listing Title",
+      "label": "Car Title",
       "name": "listingTitle",
       "fieldType": "text",
       "required": true,
@@ -9,18 +9,19 @@
       "icon": "FaClipboardList"
     },
     {
-      "label": "Tagline",
+      "label": "Short Highlight",
       "name": "tagline",
       "fieldType": "text",
       "column": 2,
       "icon": "FaTag"
     },
     {
-      "label": "Original Price",
+      "label": "Original Price (Optional)",
       "name": "originalPrice",
       "fieldType": "text",
       "column": 1,
-      "icon": "FaDollarSign"
+      "icon": "FaDollarSign",
+      "required": false
     },
     {
       "label": "Selling Price",
@@ -31,22 +32,21 @@
       "icon": "FaMoneyBillAlt"
     },
     {
-      "label": "Category",
+      "label": "Car Type",
       "name": "category",
       "fieldType": "dropdown",
       "options": [
-        "Sedan",
-        "SUV",
-        "Hatchback",
-        "Electric",
-        "Hybrid"
+        "Car",
+        "Bike",
+        "Tempo",
+        "Rickshaw"
       ],
       "required": true,
       "column": 1,
       "icon": "FaCar"
     },
     {
-      "label": "Condition",
+      "label": "Condition (New / Used)",
       "name": "condition",
       "fieldType": "dropdown",
       "required": true,
@@ -54,9 +54,8 @@
       "column": 1,
       "icon": "FaCheckCircle"
     },
-
     {
-      "label": "Make",
+      "label": "Brand",
       "name": "make",
       "fieldType": "dropdown",
       "required": true,
@@ -84,7 +83,7 @@
       "icon": "FaIndustry"
     },
     {
-      "label": "Model",
+      "label": "Model Name",
       "name": "model",
       "fieldType": "text",
       "required": true,
@@ -109,7 +108,7 @@
       "icon": "FaRoad"
     },
     {
-      "label": "Transmission",
+      "label": "Gear Type",
       "name": "transmission",
       "fieldType": "dropdown",
       "options": ["Automatic", "Manual", "CVT"],
@@ -121,13 +120,13 @@
       "label": "Fuel Type",
       "name": "fuelType",
       "fieldType": "dropdown",
-      "options": ["Petrol", "Diesel", "Electric", "Hybrid"],
+      "options": ["Petrol", "Diesel", "Electric", "Hybrid", "CNG"],
       "required": true,
       "column": 1,
       "icon": "FaGasPump"
     },
     {
-      "label": "Mileage",
+      "label": "KM Driven",
       "name": "mileage",
       "fieldType": "number",
       "required": true,
@@ -135,45 +134,29 @@
       "icon": "FaTachometerAlt"
     },
     {
-      "label": "Engine Size",
+      "label": "Engine (CC)",
       "name": "engineSize",
       "fieldType": "text",
       "column": 1,
       "icon": "FaWrench"
     },
     {
-      "label": "Cylinder",
+      "label": "No. of Cylinders",
       "name": "cylinder",
       "fieldType": "number",
       "column": 1,
       "icon": "FaCircle"
     },
     {
-      "label": "Color",
+      "label": "Car Color",
       "name": "color",
-      "fieldType": "dropdown",
+      "fieldType": "text",
       "required": true,
-      "options": [
-        "Black",
-        "White",
-        "Silver",
-        "Grey",
-        "Red",
-        "Blue",
-        "Brown",
-        "Orange",
-        "Yellow",
-        "Green",
-        "Gold",
-        "Maroon",
-        "Beige",
-        "Pink"
-      ],
       "column": 2,
       "icon": "FaPalette"
     },
     {
-      "label": "Door",
+      "label": "No. of Doors",
       "name": "door",
       "fieldType": "number",
       "required": true,
@@ -181,22 +164,31 @@
       "icon": "FaDoorClosed"
     },
     {
-      "label": "VIN",
+      "label": "Vehicle Registration Code",
+      "name": "vehicleRegCode",
+      "fieldType": "text",
+      "required": true,
+      "column": 1,
+      "icon": "FaIdCard"
+    },
+    {
+      "label": "Vehicle Number (Optional)",
       "name": "vin",
       "fieldType": "text",
       "column": 1,
-      "icon": "FaIdCard"
+      "icon": "FaIdCard",
+      "required": false
     },
     {
       "label": "Offer Type",
       "name": "offerType",
       "fieldType": "dropdown",
-      "options": ["Sell", "Urgent"],
+      "options": ["Sell"],
       "column": 2,
       "icon": "FaTags"
     },
     {
-      "label": "Listing Description",
+      "label": "Description",
       "name": "listingDescription",
       "fieldType": "textarea",
       "required": true,
@@ -204,7 +196,7 @@
       "icon": "FaFileAlt"
     },
     {
-      "label": "Instagram Reel URL",
+      "label": "Reel Link (Optional)",
       "name": "instagramUrl",
       "fieldType": "text",
       "column": 2,

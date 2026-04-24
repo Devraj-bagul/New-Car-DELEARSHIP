@@ -15,7 +15,7 @@ import OwnersDetail from "@/components/OwnersDetail";
 import FinancialCalculator from "../components/FinancialCalculator";
 import Footer from "@/components/Footer";
 import MostSearchedCar from "@/components/MostSearchedCar";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import useIsMobile from "@/Shared/useIsMobile";
 
 const ListingDetail = () => {
@@ -121,46 +121,81 @@ const ListingDetail = () => {
           </div>
 
           {/* DESKTOP */}
-          <div className="hidden md:grid grid-cols-3 w-full mt-10 gap-5">
-            <div className="col-span-2 space-y-5">
-              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <div className="hidden md:grid grid-cols-3 w-full mt-10 gap-8">
+            <div className="col-span-2 space-y-8">
+              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
                 <ImageGallery carDetail={carDetail} />
               </motion.div>
 
-              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
                 <Description carDetail={carDetail} />
               </motion.div>
 
-              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
                 <Features features={carDetail?.features} />
               </motion.div>
 
-              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
                 <FinancialCalculator carDetail={carDetail} />
               </motion.div>
             </div>
 
-            <div className="space-y-5">
-              <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
-                <Pricing carDetail={carDetail} />
-              </motion.div>
+            {/* STICKY SIDEBAR */}
+            <div className="relative">
+              <div className="sticky top-32 space-y-8 h-fit">
+                <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
+                  <Pricing carDetail={carDetail} />
+                </motion.div>
 
-              <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
-                <Specification carDetail={carDetail} />
-              </motion.div>
+                <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
+                  <Specification carDetail={carDetail} />
+                </motion.div>
 
-              <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
-                <OwnersDetail carDetail={carDetail} />
-              </motion.div>
+                <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
+                  <OwnersDetail carDetail={carDetail} />
+                </motion.div>
+              </div>
             </div>
           </div>
         </motion.div>
 
+        {/* Scroll to Top Button */}
+        <ScrollToTopButton />
 
         <MostSearchedCar />
         <Footer />
       </div>
     </motion.div>
+  );
+};
+
+const ScrollToTopButton = () => {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShow(window.scrollY > 500);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {show && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0.5, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.5, y: 20 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-24 md:bottom-10 right-6 md:right-10 z-[100] w-14 h-14 bg-black dark:bg-gold text-white dark:text-black rounded-full flex items-center justify-center shadow-2xl border-2 border-white/50 dark:border-black/50 hover:scale-110 active:scale-95 transition-transform"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+          </svg>
+        </motion.button>
+      )}
+    </AnimatePresence>
   );
 };
 

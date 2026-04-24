@@ -17,32 +17,51 @@ const ShareMenu = ({ showShareMenu, setShowShareMenu, handleShare }) => (
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-40"
+          className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-md"
           onClick={() => setShowShareMenu(false)}
         />
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 10 }}
+          initial={{ opacity: 0, scale: 0.9, y: 50 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 10 }}
-          className="absolute right-0 mt-2 w-48 bg-card border border-border shadow-xl rounded-2xl p-2 z-50 overflow-hidden"
+          exit={{ opacity: 0, scale: 0.9, y: 50 }}
+          className="fixed bottom-0 left-0 right-0 md:absolute md:top-20 md:bottom-auto md:right-0 md:left-auto w-full md:w-96 bg-white dark:bg-card border-t-4 md:border-4 border-black dark:border-white/20 shadow-[0_-20px_50px_rgba(0,0,0,0.3)] rounded-t-[3rem] md:rounded-[3rem] p-8 z-[70] overflow-hidden"
         >
+          <div className="flex flex-col items-center text-center mb-8">
+            <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mb-4 shadow-xl shadow-green-500/30">
+               <FaWhatsapp className="text-white text-3xl" />
+            </div>
+            <h3 className="font-black uppercase tracking-tighter text-2xl">Premium Share</h3>
+            <p className="text-[10px] text-neutral-400 font-bold uppercase tracking-widest mt-1">Ready for high-end presentation</p>
+          </div>
+
+          <div className="space-y-4">
+            <div className="p-4 bg-neutral-50 dark:bg-white/5 rounded-2xl border border-neutral-100 dark:border-white/10">
+               <h4 className="text-[10px] font-black uppercase text-neutral-400 mb-2 tracking-[0.2em]">Step 1: Content Sharing</h4>
+               <button 
+                onClick={() => handleShare("whatsapp")}
+                className="flex items-center justify-center gap-3 w-full p-4 bg-green-500 hover:bg-green-600 text-white rounded-xl font-black uppercase tracking-widest text-xs transition-transform active:scale-95 shadow-lg shadow-green-500/20"
+              >
+                <FaWhatsapp className="text-lg" /> Send Text Details
+              </button>
+            </div>
+
+            <div className="p-4 bg-neutral-50 dark:bg-white/5 rounded-2xl border border-neutral-100 dark:border-white/10">
+               <h4 className="text-[10px] font-black uppercase text-neutral-400 mb-2 tracking-[0.2em]">Step 2: Save to Gallery</h4>
+               <p className="text-[11px] text-neutral-500 font-medium mb-3 italic">Save the car images from the gallery to share them first.</p>
+               <button 
+                onClick={() => setShowShareMenu(false)}
+                className="w-full p-3 border-2 border-black dark:border-white/20 text-black dark:text-white rounded-xl font-black uppercase tracking-widest text-[10px] hover:bg-black hover:text-white transition-all"
+              >
+                Images are Ready
+              </button>
+            </div>
+          </div>
+          
           <button 
-            onClick={() => handleShare("whatsapp")}
-            className="flex items-center gap-3 w-full p-3 text-sm font-medium hover:bg-green-500/10 text-green-500 rounded-xl transition-colors"
+            onClick={() => setShowShareMenu(false)}
+            className="w-full mt-6 text-[10px] font-black text-neutral-400 uppercase tracking-widest hover:text-black transition-colors"
           >
-            <FaWhatsapp className="text-lg" /> WhatsApp
-          </button>
-          <button 
-            onClick={() => handleShare("instagram")}
-            className="flex items-center gap-3 w-full p-3 text-sm font-medium hover:bg-pink-500/10 text-pink-500 rounded-xl transition-colors"
-          >
-            <FaInstagram className="text-lg" /> Instagram
-          </button>
-          <button 
-            onClick={() => handleShare("copy")}
-            className="flex items-center gap-3 w-full p-3 text-sm font-medium hover:bg-gold/10 text-gold rounded-xl transition-colors border-t border-border/50 mt-1 pt-3"
-          >
-            <FaCopy className="text-lg" /> Copy Link
+            Close Menu
           </button>
         </motion.div>
       </>
@@ -55,33 +74,34 @@ const DetailHeader = ({ carDetail }) => {
   const navigate = useNavigate();
 
   const shareUrl = window.location.href;
-  const shareMessage = `Vinit Cars: ${carDetail?.listingTitle}\n💰 Price: ₹${carDetail?.sellingPrice}\n🔗 Check it out here: ${shareUrl}`;
 
-  const handleShare = async (platform) => {
-    if (platform === "whatsapp") {
-      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
-      window.open(whatsappUrl, "_blank");
-    } else if (platform === "instagram") {
-      navigator.clipboard.writeText(shareMessage);
-      toast.success("Details copied! You can now share it on Instagram.");
-    } else if (platform === "copy") {
-      navigator.clipboard.writeText(shareMessage);
-      toast.success("Link copied to clipboard!");
-    } else {
-      if (navigator.share) {
-        try {
-          await navigator.share({
-            title: "Vinit Cars - " + carDetail?.listingTitle,
-            text: shareMessage,
-            url: shareUrl,
-          });
-        } catch (error) {
-          console.log("Error sharing:", error);
-        }
-      } else {
-        setShowShareMenu(!showShareMenu);
-      }
-    }
+  const handleShare = () => {
+    const message = `🚗 *${carDetail?.listingTitle?.toUpperCase()}* | ${carDetail?.vehicleRegCode || 'MH XX'}
+
+💸 *SPECIAL PRICE:*
+• Original: ₹${carDetail?.originalPrice || '-'}
+• *Selling: ₹${carDetail?.sellingPrice}*
+
+📊 *SPECIFICATIONS:*
+• *MODEL:* ${carDetail?.model}
+• *FUEL:* ${carDetail?.fuelType}
+• *GEAR:* ${carDetail?.transmission}
+• *KM:* ${carDetail?.mileage} KM
+• *YEAR:* ${carDetail?.year}
+• *COLOR:* ${carDetail?.color}
+• *ENGINE:* ${carDetail?.engineSize || '1.5L'}
+
+👔 *DEALER INFO:*
+• *NAME:* Vinit Bagul
+• *PHONE:* +91 9284438720
+
+🔗 *VIEW ALL IMAGES & CATALOG:*
+${shareUrl}
+
+_High-end minimalist automotive commerce_`;
+
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
     setShowShareMenu(false);
   };
 
@@ -90,18 +110,18 @@ const DetailHeader = ({ carDetail }) => {
       {carDetail?.listingTitle ? (
         <div className="flex flex-col gap-6">
           {/* MOBILE HEADER - [BACK] [TITLE] [SHARE] */}
-          <div className="flex md:hidden items-center justify-between gap-4 sticky top-0 z-40 bg-[#Fcfcfc]/80 dark:bg-background/80 backdrop-blur-md py-4 -mx-5 px-5 border-b border-border/50">
+          <div className="flex md:hidden items-center justify-between gap-4 sticky top-0 z-50 bg-[#Fcfcfc]/80 dark:bg-background/80 backdrop-blur-md py-4 -mx-5 px-5 border-b border-border/50">
             <button
               onClick={() => navigate(-1)}
-              className="p-3 bg-white dark:bg-card border border-border/50 rounded-full shadow-sm text-foreground active:scale-90 transition-transform"
+              className="p-3 bg-white dark:bg-card border-2 border-black rounded-full shadow-sm text-foreground active:scale-90 transition-transform"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5 text-black dark:text-white">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
               </svg>
             </button>
             
             <div className="flex-1 text-center">
-              <h2 className="font-extrabold text-lg leading-tight text-foreground line-clamp-1 uppercase tracking-tight">
+              <h2 className="font-black text-lg leading-tight text-black dark:text-white line-clamp-1 uppercase tracking-tighter">
                 {carDetail?.listingTitle}
               </h2>
             </div>
@@ -109,64 +129,76 @@ const DetailHeader = ({ carDetail }) => {
             <div className="relative">
               <button 
                 onClick={() => setShowShareMenu(!showShareMenu)}
-                className="p-3 bg-white dark:bg-card border border-border/50 rounded-full shadow-sm text-gold active:scale-90 transition-transform"
+                className="p-3 bg-white dark:bg-card border-2 border-black rounded-full shadow-sm text-black active:scale-90 transition-transform"
               >
-                <IoShareSocialOutline className="h-6 w-6" />
+                <IoShareSocialOutline className="h-6 w-6 text-black dark:text-gold" />
               </button>
-              <ShareMenu showShareMenu={showShareMenu} setShowShareMenu={setShowShareMenu} handleShare={handleShare} />
             </div>
           </div>
+
+          <ShareMenu showShareMenu={showShareMenu} setShowShareMenu={setShowShareMenu} handleShare={handleShare} />
 
           {/* DESKTOP HEADER */}
           <div className="hidden md:flex justify-between items-start">
             <div>
-              <h2 className="font-bold text-3xl md:text-5xl text-foreground tracking-tighter">{carDetail?.listingTitle}</h2>
-              <p className="text-sm md:text-xl text-muted-foreground mt-2 font-medium tracking-wide">{carDetail?.tagline}</p>
+              <h2 className="font-bold text-3xl md:text-5xl text-black dark:text-white tracking-tight uppercase">{carDetail?.listingTitle}</h2>
+              <p className="text-sm md:text-lg text-neutral-500 mt-2 font-semibold tracking-[0.15em] uppercase opacity-80">{carDetail?.tagline || "Elite Performance Executive Driving"}</p>
             </div>
             <div className="relative">
               <button 
                 onClick={() => setShowShareMenu(!showShareMenu)}
-                className="p-4 bg-midnight/40 border border-gold/30 rounded-full hover:bg-gold/20 hover:border-gold/60 transition-all duration-300 text-gold shadow-[0_0_15px_rgba(212,175,55,0.15)] hover:shadow-[0_0_25px_rgba(212,175,55,0.3)] group backdrop-blur-md"
+                className="p-4 bg-white dark:bg-card border-2 border-black shadow-lg rounded-full hover:bg-neutral-50 transition-all duration-300 text-black dark:text-white"
                 title="Share this listing"
               >
-                <IoShareSocialOutline className="h-8 w-8 transition-transform group-hover:scale-110" />
+                <IoShareSocialOutline className="h-6 w-6 text-black dark:text-gold" />
               </button>
-
-              <ShareMenu showShareMenu={showShareMenu} setShowShareMenu={setShowShareMenu} handleShare={handleShare} />
             </div>
           </div>
 
           {/* MOBILE TITLE SECTION */}
           <div className="md:hidden mt-2">
-            <h1 className="font-black text-4xl text-foreground leading-none tracking-tighter uppercase mb-2">
+            <h1 className="font-bold text-2xl text-black dark:text-white leading-tight tracking-tight uppercase mb-2">
               {carDetail?.listingTitle}
             </h1>
-            <p className="text-sm text-muted-foreground font-bold tracking-widest uppercase opacity-70 border-l-2 border-gold pl-3 py-1">
+            <p className="text-[10px] text-neutral-500 font-black tracking-widest uppercase opacity-80 flex items-center gap-3">
+              <span className="w-8 h-[1px] bg-gold"></span>
               {carDetail?.tagline || "Elite Performance Executive Driving"}
             </p>
           </div>
 
           {/* Feature Chips */}
-          <div className="flex flex-wrap gap-2 mt-3">
+          <div className="flex flex-wrap gap-4 mt-8">
             
-            <div className="flex items-center gap-2 bg-blue-50 rounded-full p-2 px-3">
-              <HiCalendarDays className="h-6 w-6 text-blue-800" />
-              <h2 className="text-blue-800 text-sm">{carDetail?.year}</h2>
+            <div className="flex items-center gap-3 bg-white dark:bg-card border border-border/80 shadow-md rounded-2xl p-2 px-5 group hover:border-black transition-colors">
+              <HiCalendarDays className="h-5 w-5 text-black dark:text-gold" />
+              <div className="flex flex-col">
+                <span className="text-[9px] font-black text-neutral-400 uppercase tracking-tighter leading-none">Year</span>
+                <h2 className="text-black dark:text-white text-sm font-bold">{carDetail?.year}</h2>
+              </div>
             </div>
 
-            <div className="flex items-center gap-2 bg-blue-50 rounded-full p-2 px-3">
-              <IoSpeedometerOutline className="h-6 w-6 text-blue-800" />
-              <h2 className="text-blue-800 text-sm">{carDetail?.mileage} Run</h2>
+            <div className="flex items-center gap-3 bg-white dark:bg-card border border-border/80 shadow-md rounded-2xl p-2 px-5 group hover:border-black transition-colors">
+              <IoSpeedometerOutline className="h-5 w-5 text-black dark:text-gold" />
+              <div className="flex flex-col">
+                <span className="text-[9px] font-black text-neutral-400 uppercase tracking-tighter leading-none">KM Driven</span>
+                <h2 className="text-black dark:text-white text-sm font-bold">{carDetail?.mileage} KM</h2>
+              </div>
             </div>
 
-            <div className="flex items-center gap-2 bg-blue-50 rounded-full p-2 px-3">
-              <GiGearStickPattern className="h-6 w-6 text-blue-800" />
-              <h2 className="text-blue-800 text-sm">{carDetail?.transmission}</h2>
+            <div className="flex items-center gap-3 bg-white dark:bg-card border border-border/80 shadow-md rounded-2xl p-2 px-5 group hover:border-black transition-colors">
+              <GiGearStickPattern className="h-5 w-5 text-black dark:text-gold" />
+              <div className="flex flex-col">
+                <span className="text-[9px] font-black text-neutral-400 uppercase tracking-tighter leading-none">Gear</span>
+                <h2 className="text-black dark:text-white text-sm font-bold">{carDetail?.transmission}</h2>
+              </div>
             </div>
 
-            <div className="flex items-center gap-2 bg-blue-50 rounded-full p-2 px-3">
-              <BsFillFuelPumpDieselFill className="h-6 w-6 text-blue-800" />
-              <h2 className="text-blue-800 text-sm">{carDetail?.fuelType}</h2>
+            <div className="flex items-center gap-3 bg-white dark:bg-card border border-border/80 shadow-md rounded-2xl p-2 px-5 group hover:border-black transition-colors">
+              <BsFillFuelPumpDieselFill className="h-5 w-5 text-black dark:text-gold" />
+              <div className="flex flex-col">
+                <span className="text-[9px] font-black text-neutral-400 uppercase tracking-tighter leading-none">Fuel</span>
+                <h2 className="text-black dark:text-white text-sm font-bold">{carDetail?.fuelType}</h2>
+              </div>
             </div>
           </div>
         </div>

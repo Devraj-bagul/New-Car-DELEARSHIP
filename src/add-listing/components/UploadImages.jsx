@@ -108,41 +108,44 @@ const UploadImages = ({ triggleUploadImages, setLoader, carInfo, mode }) => {
   };
 
   return (
-    <div>
-      <h2 className="font-medium text-xl my-3">Upload Car Images</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
+    <div className="space-y-6">
+      <h2 className="font-bold text-2xl text-black dark:text-white uppercase tracking-tight">Upload Car Images</h2>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
         {mode == "edit" &&
           EditCarImageList.map((image, index) => (
-            <div key={index} className="relative">
+            <div key={index} className="relative group/img shadow-xl rounded-2xl overflow-hidden hover:scale-[1.02] transition-all">
               <IoMdCloseCircle
-                className="absolute m-2 text-lg text-white cursor-pointer"
+                className="absolute top-2 right-2 text-2xl text-red-500 bg-white rounded-full cursor-pointer z-10 opacity-0 group-hover/img:opacity-100 transition-opacity"
                 onClick={() => onImageRemoveFromDB(image)}
               />
               <img
                 src={image?.imageUrl}
-                className="w-full h-[130px] object-cover rounded-xl"
+                className="w-full aspect-square object-cover"
                 alt=""
               />
             </div>
           ))}
 
         {selectedFileList.map((image, index) => (
-          <div key={index}>
+          <div key={index} className="relative group/img shadow-xl rounded-2xl overflow-hidden hover:scale-[1.02] transition-all">
             <IoMdCloseCircle
-              className="absolute m-2 text-lg text-white"
+              className="absolute top-2 right-2 text-2xl text-red-500 bg-white rounded-full cursor-pointer z-10 opacity-0 group-hover/img:opacity-100 transition-opacity"
               onClick={() => onImageRemove(image, index)}
             />
 
             <img
               src={URL.createObjectURL(image)}
-              className="w-full h-[130px] object-cover rounded-xl"
+              className="w-full aspect-square object-cover"
               alt=""
             />
           </div>
         ))}
-        <label htmlFor="upload-iamges">
-          <div className="border rounded-xl border-dotted border-blue-600 bg-blue-100 p-10 cursor-pointer hover:shadow-md">
-            <h2 className="text-lg text-center text-red-600">+</h2>
+        <label htmlFor="upload-iamges" className="cursor-pointer">
+          <div className="border-2 border-dashed border-border rounded-2xl bg-secondary/50 w-full aspect-square flex flex-col items-center justify-center gap-3 hover:bg-gold/10 hover:border-gold/50 transition-all group/upload">
+            <div className="w-12 h-12 bg-white dark:bg-card rounded-full flex items-center justify-center shadow-md group-hover/upload:scale-110 transition-transform">
+                <span className="text-3xl text-gold">+</span>
+            </div>
+            <span className="text-[10px] font-black uppercase tracking-widest text-neutral-400 group-hover/upload:text-gold transition-colors">Add Media</span>
           </div>
         </label>
         <input
@@ -150,7 +153,7 @@ const UploadImages = ({ triggleUploadImages, setLoader, carInfo, mode }) => {
           multiple={true}
           id="upload-iamges"
           onChange={onFileSelected}
-          className="opacity-0"
+          className="hidden"
         />
       </div>
     </div>

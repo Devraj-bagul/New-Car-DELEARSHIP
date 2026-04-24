@@ -142,8 +142,16 @@ const Category=[
     //     name:'Truck',
     //     icon:'https://cdn-icons-png.flaticon.com/128/5814/5814855.png'
     // },
- 
-    
+    {
+        id:5,
+        name:'Tempo',
+        icon:'https://cdn-icons-png.flaticon.com/128/1433/1433678.png'
+    },
+    {
+        id:6,
+        name:'Rickshaw',
+        icon:'https://cdn-icons-png.flaticon.com/128/3121/3121544.png'
+    }
 ]
 
 export default{

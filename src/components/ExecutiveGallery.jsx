@@ -22,18 +22,18 @@ const ExecutiveGallery = () => {
             initial={{ opacity: 0, x: isMobile ? 0 : -30 }}
             whileInView={isMobile ? { opacity: 1 } : { opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left"
+            className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left px-4 md:px-0"
           >
-            <span className="text-black dark:text-gold uppercase tracking-[0.3em] font-semibold text-sm mb-4 block">The Visionary</span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-wide mb-8 text-black dark:text-white leading-tight">
+            <span className="text-black dark:text-gold uppercase tracking-[0.3em] font-semibold text-xs md:text-sm mb-4 block">The Visionary</span>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-wide mb-8 text-black dark:text-white leading-tight">
               Mind Behind <br/><span className="text-black dark:text-gold font-black italic">The Machine</span>
             </h2>
             
-            <div className="pl-0 md:pl-6 border-l-0 md:border-l-2 border-black/10 dark:border-gold/50 flex flex-col items-center md:items-start mb-12">
-              <p className="text-xl md:text-2xl font-serif italic text-black dark:text-white/90 mb-4 tracking-wide leading-relaxed">
+            <div className="pl-0 md:pl-6 border-l-0 md:border-l-2 border-black/10 dark:border-gold/50 flex flex-col items-center md:items-start mb-12 w-full">
+              <p className="text-lg md:text-2xl font-serif italic text-black dark:text-white/90 mb-4 tracking-wide leading-relaxed max-w-md md:max-w-none">
                 "Our commitment is not just to sell cars, but to deliver a masterpiece of engineering accompanied by an unparalleled ownership experience."
               </p>
-              <h4 className="text-black dark:text-gold font-black tracking-widest uppercase text-sm">- Vinit Bagul</h4>
+              <h4 className="text-black dark:text-gold font-black tracking-widest uppercase text-xs animate-pulse">- Vinit Bagul</h4>
             </div>
           </motion.div>
 

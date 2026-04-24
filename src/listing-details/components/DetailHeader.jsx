@@ -31,31 +31,15 @@ const ShareMenu = ({ showShareMenu, setShowShareMenu, handleShare }) => (
                <FaWhatsapp className="text-white text-3xl" />
             </div>
             <h3 className="font-black uppercase tracking-tighter text-2xl">Premium Share</h3>
-            <p className="text-[10px] text-neutral-400 font-bold uppercase tracking-widest mt-1">Ready for high-end presentation</p>
+            <p className="text-[10px] text-neutral-400 font-bold uppercase tracking-widest mt-1">Send details directly to WhatsApp</p>
           </div>
 
-          <div className="space-y-4">
-            <div className="p-4 bg-neutral-50 dark:bg-white/5 rounded-2xl border border-neutral-100 dark:border-white/10">
-               <h4 className="text-[10px] font-black uppercase text-neutral-400 mb-2 tracking-[0.2em]">Step 1: Content Sharing</h4>
-               <button 
-                onClick={() => handleShare("whatsapp")}
-                className="flex items-center justify-center gap-3 w-full p-4 bg-green-500 hover:bg-green-600 text-white rounded-xl font-black uppercase tracking-widest text-xs transition-transform active:scale-95 shadow-lg shadow-green-500/20"
-              >
-                <FaWhatsapp className="text-lg" /> Send Text Details
-              </button>
-            </div>
-
-            <div className="p-4 bg-neutral-50 dark:bg-white/5 rounded-2xl border border-neutral-100 dark:border-white/10">
-               <h4 className="text-[10px] font-black uppercase text-neutral-400 mb-2 tracking-[0.2em]">Step 2: Save to Gallery</h4>
-               <p className="text-[11px] text-neutral-500 font-medium mb-3 italic">Save the car images from the gallery to share them first.</p>
-               <button 
-                onClick={() => setShowShareMenu(false)}
-                className="w-full p-3 border-2 border-black dark:border-white/20 text-black dark:text-white rounded-xl font-black uppercase tracking-widest text-[10px] hover:bg-black hover:text-white transition-all"
-              >
-                Images are Ready
-              </button>
-            </div>
-          </div>
+          <button 
+            onClick={() => handleShare("whatsapp")}
+            className="flex items-center justify-center gap-3 w-full p-5 bg-green-500 hover:bg-green-600 text-white rounded-2xl font-black uppercase tracking-widest text-sm transition-transform active:scale-95 shadow-lg shadow-green-500/20"
+          >
+            <FaWhatsapp className="text-2xl" /> Share on WhatsApp
+          </button>
           
           <button 
             onClick={() => setShowShareMenu(false)}

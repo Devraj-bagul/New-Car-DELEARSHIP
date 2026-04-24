@@ -20,7 +20,8 @@ const Pricing = ({ carDetail }) => {
   };
 
   return (
-    <div className='p-6 md:p-10 rounded-[2.5rem] bg-white dark:bg-card border-2 border-black dark:border-white/20 shadow-2xl transition-all relative overflow-hidden'>
+    <div className='p-6 md:p-8 rounded-[2.5rem] bg-white dark:bg-card border-4 border-black dark:border-white/20 shadow-[8px_8px_0px_rgba(212,175,55,0.4)] transition-all relative overflow-hidden'>
+      <div className="absolute top-8 left-0 w-1.5 h-12 bg-gold"></div>
       {/* Blinking Live Deal Indicator */}
       <div className="absolute top-6 right-6 flex items-center gap-2 px-3 py-1 bg-green-50 dark:bg-green-500/10 rounded-full border border-green-200 dark:border-green-500/20">
         <span className="relative flex h-2 w-2">
@@ -30,7 +31,7 @@ const Pricing = ({ carDetail }) => {
         <span className="text-[10px] font-black text-green-600 dark:text-green-400 uppercase tracking-widest">Live Offer</span>
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col mt-4">
         <h2 className="text-neutral-500 dark:text-neutral-400 text-xs md:text-[14px] font-bold uppercase tracking-widest mb-4">
           Dealer <span className="italic">Valuation</span>
         </h2>
@@ -38,7 +39,7 @@ const Pricing = ({ carDetail }) => {
         <div className="flex flex-col gap-1">
           {carDetail?.originalPrice && (
             <div className="flex items-center gap-3 mb-1">
-              <span className="text-neutral-400 line-through text-lg md:text-2xl font-bold italic">
+              <span className="text-neutral-400 line-through text-lg md:text-xl font-bold italic">
                 ₹{carDetail?.originalPrice}
               </span>
               <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-[10px] md:text-xs font-black uppercase tracking-tighter">
@@ -46,24 +47,11 @@ const Pricing = ({ carDetail }) => {
               </span>
             </div>
           )}
-          <h2 className='font-black text-4xl md:text-6xl text-black dark:text-white tracking-tighter leading-none'>
+          <h2 className='font-bold text-4xl md:text-6xl text-black dark:text-white tracking-tighter leading-none'>
             ₹{carDetail?.sellingPrice}
           </h2>
         </div>
       </div>
-
-      <Button 
-        className="w-full mt-8 py-8 rounded-2xl text-lg md:text-xl font-black uppercase tracking-tighter bg-black dark:bg-gold text-white dark:text-black hover:bg-gold hover:text-black transition-all shadow-[0_10px_30px_rgba(0,0,0,0.1)] active:scale-[0.98]" 
-        size="lg" 
-        onClick={handleWhatsapp}
-      >
-        <MdOutlineLocalOffer className='text-2xl mr-3' /> 
-        Secure Best Price
-      </Button>
-      
-      <p className="mt-5 text-[10px] md:text-xs text-center text-neutral-400 uppercase tracking-widest font-bold opacity-80">
-        Authentic Pricing Guarantee
-      </p>
     </div>
   )
 }

@@ -4,7 +4,7 @@ const Description = ({ carDetail }) => {
   return (
     <div className="md:mt-10">
       { carDetail?.listingDescription ? (
-        <div className="p-6 md:p-10 bg-[#f9fafb] dark:bg-black/20 border-2 border-black dark:border-white/20 rounded-[2.5rem] mt-10 shadow-sm relative overflow-hidden">
+        <div className="p-6 md:p-10 bg-[#f9fafb] dark:bg-black/20 border-4 border-black dark:border-white/20 rounded-[2.5rem] mt-10 shadow-[8px_8px_0px_rgba(212,175,55,0.4)] relative overflow-hidden">
           <div className="flex items-center gap-4 mb-8">
             <div className="w-12 h-[2px] bg-gold"></div>
             <h2 className="font-bold text-2xl md:text-3xl text-black dark:text-white uppercase tracking-tight">

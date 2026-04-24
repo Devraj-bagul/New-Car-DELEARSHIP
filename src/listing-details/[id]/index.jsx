@@ -78,13 +78,13 @@ const ListingDetail = () => {
         <motion.div
           initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="p-5 md:p-10 md:px-20 pt-28 md:pt-36"
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="p-5 md:p-10 md:px-20 pt-28 md:pt-36 will-change-transform"
         >
           <motion.div
-            initial={{ opacity: 0, y: isMobile ? 0 : 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
             <DetailHeader carDetail={carDetail} />
           </motion.div>

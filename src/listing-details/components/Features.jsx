@@ -7,7 +7,8 @@ const Features = ({ features }) => {
     typeof features === "object" && features !== null ? features : {};
 
   return (
-    <div className="p-6 md:p-10 bg-[#f9fafb] dark:bg-black/20 border-2 border-black dark:border-white/20 rounded-[2.5rem] mt-10 shadow-sm">
+    <div className="p-6 md:p-10 bg-white dark:bg-card border-4 border-black dark:border-white/20 rounded-[2.5rem] shadow-[8px_8px_0px_rgba(212,175,55,0.4)] transition-all relative mt-10">
+      <div className="absolute top-10 left-0 w-1.5 h-12 bg-gold"></div>
       <div className="flex items-center gap-4 mb-10">
         <div className="w-12 h-[2px] bg-gold"></div>
         <h2 className="font-bold text-2xl md:text-3xl text-black dark:text-white uppercase tracking-tight">

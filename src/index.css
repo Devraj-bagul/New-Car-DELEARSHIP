@@ -119,13 +119,16 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
   }
   * {
     @apply border-border outline-ring/50;
+    font-family: 'Poppins', sans-serif;
   }
   body {
     @apply bg-background text-foreground transition-colors duration-300;
     transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
   }
 }
 

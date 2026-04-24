@@ -36,10 +36,11 @@
       "name": "category",
       "fieldType": "dropdown",
       "options": [
-        "Car",
-        "Bike",
-        "Tempo",
-        "Rickshaw"
+        "SUV",
+        "Sedan",
+        "Hatchback",
+        "Electric",
+        "Tempo"
       ],
       "required": true,
       "column": 1,

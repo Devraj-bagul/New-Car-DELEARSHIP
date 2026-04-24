@@ -12,13 +12,13 @@ const LogoWall = () => {
       <style>
         {`
           @keyframes scrollRight {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0%); }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-33.33%); }
           }
           .animate-infinite-scroll {
             display: flex;
             width: max-content;
-            animation: scrollRight 20s linear infinite;
+            animation: scrollRight 40s linear infinite;
           }
         `}
       </style>
@@ -52,13 +52,9 @@ const LogoWall = () => {
         <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-background to-transparent z-20 pointer-events-none transition-colors duration-300"></div>
 
         <div className="animate-infinite-scroll gap-6 sm:gap-8 md:gap-10 lg:gap-12 px-4 will-change-transform">
-          {[...logos, ...logos].map((src, index) => (
-            <motion.div 
+          {[...logos, ...logos, ...logos].map((src, index) => (
+            <div 
               key={index}
-              initial={isMobile ? { opacity: 1 } : { opacity: 0, scale: 0.9, y: 20 }}
-              whileInView={isMobile ? {} : { opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: isMobile ? 0 : index * 0.05 }}
               className="flex flex-col items-center group cursor-pointer flex-shrink-0"
             >
               {/* Premium Round Container */}
@@ -77,7 +73,7 @@ const LogoWall = () => {
                   )}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

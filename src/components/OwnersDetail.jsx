@@ -14,10 +14,10 @@ const OwnersDetail = ({ carDetail }) => {
       whileInView={isMobile ? { opacity: 1 } : { opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="p-8 border border-white/10 rounded-[2.5rem] shadow-2xl mt-7 bg-[#111111] relative overflow-hidden will-change-transform"
+      className="p-8 border border-gray-200 rounded-[2.5rem] shadow-2xl mt-7 bg-white relative overflow-hidden will-change-transform"
     >
-      <div className="flex items-center gap-2 mb-6 border-b border-white/5 pb-4">
-        <h2 className="font-black tracking-tighter text-2xl text-gold uppercase">Owner <span className="text-white italic font-serif lowercase">Details</span></h2>
+      <div className="flex items-center gap-2 mb-6 border-b border-gray-100 pb-4">
+        <h2 className="font-black tracking-tighter text-2xl text-gold uppercase">Owner <span className="text-black italic font-serif lowercase">Details</span></h2>
       </div>
 
       <div className="flex items-center gap-5">
@@ -25,7 +25,7 @@ const OwnersDetail = ({ carDetail }) => {
         <div className="relative">
           <img
             src="https://res.cloudinary.com/dalo5zpik/image/upload/v1774860997/owner_lyqb8n.jpg"
-            className="w-[85px] h-[85px] rounded-full object-cover border-2 border-gold/50 p-1 bg-black shadow-xl"
+            className="w-[85px] h-[85px] rounded-full object-cover border-2 border-gold/50 p-1 bg-white shadow-xl"
             alt="Owner"
             loading="lazy"
           />
@@ -37,16 +37,11 @@ const OwnersDetail = ({ carDetail }) => {
         <div className="flex flex-col">
           <span className="text-gold text-[10px] uppercase font-black tracking-[0.2em] mb-1">Expert Dealer</span>
           <h2 
-            className="tracking-tight leading-none mb-1"
+            className="tracking-tight leading-none mb-1 text-neutral-900"
             style={{
               fontSize: '28px',
               fontWeight: '700',
-              color: '#fff',
-              textShadow: `
-                1px 1px 0 #999,
-                2px 2px 0 #666,
-                3px 3px 6px rgba(0,0,0,0.3)
-              `
+              textShadow: '0 2px 4px rgba(0,0,0,0.05)'
             }}
           >
             Vinit Bagul
@@ -61,7 +56,7 @@ const OwnersDetail = ({ carDetail }) => {
       <div className="mt-10 flex flex-col gap-4">
         {/* 📞 Call Button */}
         <Button
-          className="w-full bg-white text-black hover:bg-gold transition-all duration-300 font-black uppercase tracking-tighter flex items-center justify-center gap-3 py-7 rounded-2xl shadow-lg shadow-gold/20 active:scale-95"
+          className="w-full bg-black text-white hover:bg-gold hover:text-white transition-all duration-300 font-black uppercase tracking-tighter flex items-center justify-center gap-3 py-7 rounded-2xl shadow-lg shadow-gold/10 active:scale-95"
           onClick={() => (window.location.href = "tel:+919284438720")}
         >
           <FaPhoneAlt className="text-lg" />
@@ -79,7 +74,7 @@ const OwnersDetail = ({ carDetail }) => {
 
         {/* ⬅️ Back Button */}
         <Button
-          className="w-full bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-3 py-6 rounded-2xl transition-all duration-300 active:scale-95"
+          className="w-full bg-neutral-100 border border-neutral-200 hover:bg-neutral-200 text-neutral-600 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-3 py-6 rounded-2xl transition-all duration-300 active:scale-95"
           onClick={() => window.history.back()}
         >
           Go Back

@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { UserButton, useUser } from "@clerk/clerk-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { HiMenu, HiX } from "react-icons/hi";
+import { HiMenu, HiX, HiHeart } from "react-icons/hi";
 import { MdFingerprint } from "react-icons/md";
+import { motion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 import MobileNavbar from "./MobileNavbar";
+import { useAppContext } from "../Shared/AppContext";
 
 const Header = () => {
   const { isSignedIn } = useUser();
@@ -13,6 +15,14 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { wishlist, showWishlistOnly, setShowWishlistOnly } = useAppContext();
+
+  const handleWishlistClick = () => {
+    if (location.pathname !== "/" && !location.pathname.startsWith("/search")) {
+      navigate("/search");
+    }
+    setShowWishlistOnly(!showWishlistOnly);
+  };
 
   const isActive = (path) => {
     // Exact match or sub-path match for inventory
@@ -68,8 +78,8 @@ const Header = () => {
       <div 
         className={`pointer-events-auto w-full max-w-[98%] sm:max-w-[95%] rounded-full transition-all duration-300 flex justify-between items-center px-4 sm:px-8 lg:px-12 ${
           isScrolled 
-            ? "bg-white/80 dark:bg-black/70 backdrop-blur-xl border border-black/10 dark:border-gold/40 shadow-xl dark:shadow-[0_10px_40px_rgba(0,0,0,0.6)] py-3 sm:py-4" 
-            : "bg-white/40 dark:bg-black/40 backdrop-blur-md border border-black/10 dark:border-white/20 shadow-lg py-4 sm:py-6"
+            ? "bg-white/80 dark:bg-black/70 backdrop-blur-xl border border-black/10 dark:border-gold/40 shadow-xl dark:shadow-[0_10px_40px_rgba(0,0,0,0.6)] py-2 sm:py-4" 
+            : "bg-white/40 dark:bg-black/40 backdrop-blur-md border border-black/10 dark:border-white/20 shadow-lg py-2.5 sm:py-6"
         }`}
       >
         
@@ -78,10 +88,32 @@ const Header = () => {
           <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-gold flex items-center justify-center group-hover:shadow-[0_0_15px_rgba(212,175,55,0.8)] transition-all">
             <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gold rounded-full"></div>
           </div>
-          <h1 className="text-xl sm:text-2xl md:text-3xl font-['Playfair_Display',_serif] font-bold tracking-widest text-gold dark:text-gold italic drop-shadow-sm">
+          <h1 className="text-lg sm:text-2xl md:text-3xl font-['Playfair_Display',_serif] font-bold tracking-widest text-gold dark:text-gold italic drop-shadow-sm">
             VINIT CARS
           </h1>
         </Link>
+        
+        {/* MOBILE WISHLIST TOGGLE */}
+        <div className="flex lg:hidden items-center">
+            <motion.button
+              onClick={handleWishlistClick}
+              whileTap={{ scale: 0.9 }}
+              className={`relative p-1.5 rounded-full transition-all ${showWishlistOnly ? 'text-red-500 bg-red-500/10' : 'text-red-500'}`}
+            >
+              <HiHeart className={`text-xl ${showWishlistOnly ? 'fill-current' : ''}`} />
+              {wishlist?.length > 0 && (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute -top-0 -right-0 flex h-4 w-4 items-center justify-center bg-red-500 rounded-full border-2 border-white dark:border-black"
+                >
+                  <span className="text-[8px] font-black text-white leading-none">
+                    {wishlist?.length || 0}
+                  </span>
+                </motion.div>
+              )}
+            </motion.button>
+        </div>
 
         {/* DESKTOP MENU */}
         <ul className="hidden lg:flex gap-10 xl:gap-14 items-center text-base font-medium tracking-wider">

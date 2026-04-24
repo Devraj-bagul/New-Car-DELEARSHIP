@@ -1,5 +1,6 @@
 import React from "react";
 import { Separator } from "./ui/separator";
+import { toast } from "sonner";
 import { BsFillFuelPumpFill } from "react-icons/bs";
 import { IoSpeedometerOutline } from "react-icons/io5";
 import { GiGearStick } from "react-icons/gi";
@@ -45,9 +46,13 @@ const CarItem = React.memo(({ car }) => {
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              window.open(car?.instagramUrl || "https://www.instagram.com/vinitautodeals_malegaon/?hl=en", "_blank");
+              if (car?.instagramUrl) {
+                window.open(car.instagramUrl, "_blank");
+              } else {
+                toast.error("There is no insta link or video uploaded by owner");
+              }
             }}
-            className="absolute top-3 right-3 z-30 flex items-center justify-center w-9 h-9 bg-white/90 backdrop-blur-md rounded-full hover:scale-110 transition-transform duration-300 shadow-lg cursor-pointer group/insta"
+            className="absolute top-3 right-3 z-30 flex items-center justify-center w-8 h-8 bg-white/90 backdrop-blur-md rounded-full hover:scale-110 transition-transform duration-300 shadow-lg cursor-pointer group/insta"
             title="Watch on Instagram"
           >
             <FaInstagram className="text-lg text-[#E4405F] transition-transform duration-300 group-hover/insta:scale-110" />
@@ -89,7 +94,7 @@ const CarItem = React.memo(({ car }) => {
 
         {/* IMAGE / SLIDER */}
         <div className={`w-full bg-secondary/30 overflow-hidden relative group/slider ${
-          isTwoColumnGrid ? "h-[140px]" : "h-[200px]"
+          isTwoColumnGrid ? "h-[140px]" : "h-[170px] md:h-[200px]"
         }`}>
           {!isTwoColumnGrid && images.length > 1 && (
             <>
@@ -127,7 +132,7 @@ const CarItem = React.memo(({ car }) => {
           />
         </div>
 
-        <div className={`${isTwoColumnGrid ? "p-3" : "p-4 md:p-6"} flex flex-col flex-grow bg-card`}>
+        <div className={`${isTwoColumnGrid ? "p-3" : "p-3 md:p-6"} flex flex-col flex-grow bg-card`}>
           <h2 className={`font-bold text-foreground mb-1 transition-colors duration-300 line-clamp-1 h-[1.5em] leading-tight ${
             isTwoColumnGrid ? "text-sm" : "text-lg md:text-xl"
           }`}>
@@ -136,22 +141,22 @@ const CarItem = React.memo(({ car }) => {
 
           {!isTwoColumnGrid && (
             <>
-              <Separator className="bg-border/50 my-3" />
-              <div className="grid grid-cols-3 mt-4 gap-2 text-muted-foreground flex-grow">
+              <Separator className="bg-border/50 my-2" />
+              <div className="grid grid-cols-3 mt-2 gap-2 text-neutral-800 flex-grow">
                 <div className="flex flex-col items-center p-2 rounded-lg bg-secondary/50 border border-border/50">
-                  <BsFillFuelPumpFill className="text-lg mb-1 text-gold" />
-                  <h2 className="text-[9px] font-semibold uppercase tracking-widest text-center">{car?.mileage} <br/>Run</h2>
+                  <BsFillFuelPumpFill className="text-lg mb-1 text-black" />
+                  <h2 className="text-[9px] font-black uppercase tracking-widest text-center">{car?.mileage} <br/>Run</h2>
                 </div>
                 <div className="flex flex-col items-center p-2 rounded-lg bg-secondary/50 border border-border/50">
-                  <IoSpeedometerOutline className="text-lg mb-1 text-gold" />
-                  <h2 className="text-[9px] font-semibold uppercase tracking-widest text-center">{car?.fuelType}</h2>
+                  <IoSpeedometerOutline className="text-lg mb-1 text-black" />
+                  <h2 className="text-[9px] font-black uppercase tracking-widest text-center">{car?.fuelType}</h2>
                 </div>
                 <div className="flex flex-col items-center p-2 rounded-lg bg-secondary/50 border border-border/50">
-                  <GiGearStick className="text-lg mb-1 text-gold" />
-                  <h2 className="text-[9px] font-semibold uppercase tracking-widest text-center">{car?.transmission}</h2>
+                  <GiGearStick className="text-lg mb-1 text-black" />
+                  <h2 className="text-[9px] font-black uppercase tracking-widest text-center">{car?.transmission}</h2>
                 </div>
               </div>
-              <Separator className="my-5 bg-border/50" />
+              <Separator className="my-3 bg-border/50" />
             </>
           )}
 

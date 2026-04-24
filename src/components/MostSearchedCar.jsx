@@ -44,6 +44,7 @@ const MostSearchedCar = () => {
             fuelType: CarListing.fuelType,
             transmission: CarListing.transmission,
             condition: CarListing.condition,
+            instagramUrl: CarListing.instagramUrl,
           },
           carImages: {
             id: CarImages.id,

@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { HiHome, HiHeart, HiAdjustments, HiPhone, HiLocationMarker } from "react-icons/hi";
+import { HiHome, HiHeart, HiViewGrid, HiPhone, HiLocationMarker } from "react-icons/hi";
 import { FaCar } from "react-icons/fa";
 import { useAppContext } from "../Shared/AppContext";
 import { motion } from "framer-motion";
@@ -20,19 +20,6 @@ const MobileNavbar = () => {
         setShowWishlistOnly(false);
         if (location.pathname !== "/") navigate("/");
         window.scrollTo({ top: 0, behavior: "smooth" });
-      },
-    },
-    {
-      id: "wishlist",
-      icon: HiHeart,
-      label: "Wishlist",
-      activeColor: "text-red-500",
-      isActive: showWishlistOnly,
-      onClick: () => {
-        if (location.pathname !== "/" && !location.pathname.startsWith("/search")) {
-          navigate("/search");
-        }
-        setShowWishlistOnly(!showWishlistOnly);
       },
     },
     {
@@ -59,15 +46,15 @@ const MobileNavbar = () => {
       id: "location",
       icon: HiLocationMarker,
       label: "Maps",
-      activeColor: "text-blue-500",
+      activeColor: "text-red-500",
       onClick: () => {
         window.open("https://maps.app.goo.gl/hHH2mwXLYE5S8Rpn9", "_blank");
       },
     },
     {
       id: "settings",
-      icon: HiAdjustments,
-      label: "Layout",
+      icon: HiViewGrid,
+      label: "Grid",
       isActive: isTwoColumnGrid,
       activeColor: "text-gold",
       onClick: () => setIsTwoColumnGrid(!isTwoColumnGrid),
@@ -83,8 +70,8 @@ const MobileNavbar = () => {
           
           let iconColor = isActive ? (item.activeColor || "text-gold") : "text-black/60 dark:text-gray-400";
           if (!isActive) {
-             if (item.id === 'call') iconColor = "text-green-600/70 dark:text-green-500/70";
-             if (item.id === 'location') iconColor = "text-blue-600/70 dark:text-blue-500/70";
+             if (item.id === 'call') iconColor = "text-green-500/70";
+             if (item.id === 'location') iconColor = "text-red-500/70";
           }
           
           return (
